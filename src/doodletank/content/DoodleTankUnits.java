@@ -1,0 +1,193 @@
+package doodletank.content;
+
+import arc.graphics.Blending;
+import arc.graphics.Color;
+import arc.math.geom.Rect;
+import doodletank.type.unit.DoodleTankUnitType;
+import mindustry.ai.types.GroundAI;
+import mindustry.content.Fx;
+import mindustry.entities.bullet.BasicBulletType;
+import mindustry.entities.effect.ExplosionEffect;
+import mindustry.entities.part.RegionPart;
+import mindustry.gen.TankUnit;
+import mindustry.type.Weapon;
+
+public class DoodleTankUnits {
+    public static DoodleTankUnitType cax;
+
+    public static void load() {
+
+        cax = new DoodleTankUnitType("cax") {{
+            constructor = TankUnit::create;
+            aiController = GroundAI::new;
+
+            hitSize = 46f;
+            treadPullOffset = 1; //probably treads
+            speed = 0.48f;
+            health = 22000;
+            armor = 26f;
+            crushDamage = 25f / 5f;
+            rotateSpeed = 0.8f;
+
+            float xo = 231f / 2f, yo = 231f / 2f;
+            treadRects = new Rect[]{new Rect(27 - xo, 152 - yo, 56, 73), new Rect(24 - xo, 51 - 9 - yo, 29, 17), new Rect(59 - xo, 18 - 9 - yo, 39, 19)};
+
+            weapons.add(new Weapon("doodletank-cax-weapon") {{
+                shootSound = DoodleTankSounds.largeCannon;
+                layerOffset = 0.1f;
+                reload = 100f;
+                shootY = 32.5f;
+                shake = 5f;
+                recoil = 5f;
+                rotate = true;
+                rotateSpeed = 0.6f;
+                mirror = false;
+                x = 0f;
+                y = 7f;
+                shadow = 50f;
+                heatColor = Color.valueOf("f9350f");
+                shootWarmupSpeed = 0.06f;
+                cooldownTime = 110f;
+                heatColor = Color.valueOf("f9350f");
+                minWarmup = 0.9f;
+
+                parts.addAll(
+                        new RegionPart("-glow") {{
+                            color = Color.red;
+                            blending = Blending.additive;
+                            outline = mirror = false;
+                        }},
+                        new RegionPart("-sides") {{
+                            progress = PartProgress.warmup;
+                            mirror = true;
+                            under = true;
+                            moveX = 0.75f;
+                            moveY = 0.75f;
+                            moveRot = 82f;
+                            x = 37 / 4f;
+                            y = 8 / 4f;
+                        }},
+                        new RegionPart("-sinks") {{
+                            progress = PartProgress.warmup;
+                            mirror = true;
+                            under = true;
+                            heatColor = new Color(1f, 0.1f, 0.1f);
+                            moveX = 17f / 4f;
+                            moveY = -15f / 4f;
+                            x = 32 / 4f;
+                            y = -34 / 4f;
+                        }},
+                        new RegionPart("-sinks-heat") {{
+                            blending = Blending.additive;
+                            progress = PartProgress.warmup;
+                            mirror = true;
+                            outline = false;
+                            colorTo = new Color(1f, 0f, 0f, 0.5f);
+                            color = colorTo.cpy().a(0f);
+                            moveX = 17f / 4f;
+                            moveY = -15f / 4f;
+                            x = 32 / 4f;
+                            y = -34 / 4f;
+                        }}
+                );
+
+                for (int i = 1; i <= 3; i++) {
+                    int fi = i;
+                    parts.add(new RegionPart("-blade") {{
+                        progress = PartProgress.warmup.delay((3 - fi) * 0.3f).blend(PartProgress.reload, 0.3f);
+                        heatProgress = PartProgress.heat.add(0.3f).min(PartProgress.warmup);
+                        heatColor = new Color(1f, 0.1f, 0.1f);
+                        mirror = true;
+                        under = true;
+                        moveRot = -40f * fi;
+                        moveX = 3f;
+                        layerOffset = -0.002f;
+
+                        x = 11 / 4f;
+                    }});
+                }
+
+                bullet = new BasicBulletType(8f, 360f) {{
+                    sprite = "missile-large";
+                    width = 12f;
+                    height = 20f;
+                    lifetime = 35f;
+                    hitSize = 6f;
+
+                    smokeEffect = Fx.shootSmokeTitan;
+                    pierceCap = 3;
+                    pierce = true;
+                    pierceBuilding = true;
+                    hitColor = backColor = trailColor = Color.valueOf("feb380");
+                    frontColor = Color.white;
+                    trailWidth = 4f;
+                    trailLength = 9;
+                    hitEffect = despawnEffect = Fx.massiveExplosion;
+
+                    shootEffect = new ExplosionEffect() {{
+                        lifetime = 40f;
+                        waveStroke = 4f;
+                        waveColor = sparkColor = trailColor;
+                        waveRad = 15f;
+                        smokeSize = 5f;
+                        smokes = 8;
+                        smokeSizeBase = 0f;
+                        smokeColor = trailColor;
+                        sparks = 8;
+                        sparkRad = 40f;
+                        sparkLen = 4f;
+                        sparkStroke = 3f;
+                    }};
+
+                    splashDamage = 65f;
+                    splashDamageRadius = 70f;
+                    despawnEffect = new ExplosionEffect() {{
+                        lifetime = 50f;
+                        waveStroke = 4f;
+                        waveColor = sparkColor = trailColor;
+                        waveRad = 30f;
+                        smokeSize = 7f;
+                        smokes = 6;
+                        smokeSizeBase = 0f;
+                        smokeColor = trailColor;
+                        sparks = 5;
+                        sparkRad = 30f;
+                        sparkLen = 3f;
+                        sparkStroke = 1.5f;
+                    }};
+
+                }};
+            }});
+
+            weapons.add(new Weapon("doodletank-cax-point-weapon") {{
+                reload = 5f;
+                x = 3f;
+                y = 5.5f;
+                shootY = 5.5f;
+                recoil = 0f;
+                rotate = false;
+                mirror = false;
+
+                bullet = new BasicBulletType(4.5f, 25) {{
+                    width = 6.5f;
+                    height = 11f;
+                    shootEffect = Fx.sparkShoot;
+                    smokeEffect = Fx.shootBigSmoke;
+                    hitColor = backColor = trailColor = Color.valueOf("feb380");
+                    frontColor = Color.white;
+                    trailWidth = 1.5f;
+                    trailLength = 4;
+                    hitEffect = despawnEffect = Fx.hitBulletColor;
+                }};
+            }});
+
+            parts.add(new RegionPart("-glow") {{
+                color = Color.red;
+                blending = Blending.additive;
+                layer = -1f;
+                outline = false;
+            }});
+        }};
+
+    }
+}
