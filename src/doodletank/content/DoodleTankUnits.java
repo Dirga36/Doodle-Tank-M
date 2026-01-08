@@ -1,6 +1,5 @@
 package doodletank.content;
 
-import arc.graphics.Blending;
 import arc.graphics.Color;
 import arc.math.geom.Rect;
 import doodletank.type.unit.DoodleTankUnitType;
@@ -8,7 +7,6 @@ import mindustry.ai.types.GroundAI;
 import mindustry.content.Fx;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.effect.ExplosionEffect;
-import mindustry.entities.part.RegionPart;
 import mindustry.gen.TankUnit;
 import mindustry.type.Weapon;
 
@@ -22,7 +20,7 @@ public class DoodleTankUnits {
             aiController = GroundAI::new;
 
             hitSize = 46f;
-            treadPullOffset = 1; //probably treads
+            treadPullOffset = 1;
             speed = 0.48f;
             health = 22000;
             armor = 26f;
@@ -50,62 +48,6 @@ public class DoodleTankUnits {
                 cooldownTime = 110f;
                 heatColor = Color.valueOf("f9350f");
                 minWarmup = 0.9f;
-
-                parts.addAll(
-                        new RegionPart("-glow") {{
-                            color = Color.red;
-                            blending = Blending.additive;
-                            outline = mirror = false;
-                        }},
-                        new RegionPart("-sides") {{
-                            progress = PartProgress.warmup;
-                            mirror = true;
-                            under = true;
-                            moveX = 0.75f;
-                            moveY = 0.75f;
-                            moveRot = 82f;
-                            x = 37 / 4f;
-                            y = 8 / 4f;
-                        }},
-                        new RegionPart("-sinks") {{
-                            progress = PartProgress.warmup;
-                            mirror = true;
-                            under = true;
-                            heatColor = new Color(1f, 0.1f, 0.1f);
-                            moveX = 17f / 4f;
-                            moveY = -15f / 4f;
-                            x = 32 / 4f;
-                            y = -34 / 4f;
-                        }},
-                        new RegionPart("-sinks-heat") {{
-                            blending = Blending.additive;
-                            progress = PartProgress.warmup;
-                            mirror = true;
-                            outline = false;
-                            colorTo = new Color(1f, 0f, 0f, 0.5f);
-                            color = colorTo.cpy().a(0f);
-                            moveX = 17f / 4f;
-                            moveY = -15f / 4f;
-                            x = 32 / 4f;
-                            y = -34 / 4f;
-                        }}
-                );
-
-                for (int i = 1; i <= 3; i++) {
-                    int fi = i;
-                    parts.add(new RegionPart("-blade") {{
-                        progress = PartProgress.warmup.delay((3 - fi) * 0.3f).blend(PartProgress.reload, 0.3f);
-                        heatProgress = PartProgress.heat.add(0.3f).min(PartProgress.warmup);
-                        heatColor = new Color(1f, 0.1f, 0.1f);
-                        mirror = true;
-                        under = true;
-                        moveRot = -40f * fi;
-                        moveX = 3f;
-                        layerOffset = -0.002f;
-
-                        x = 11 / 4f;
-                    }});
-                }
 
                 bullet = new BasicBulletType(8f, 360f) {{
                     sprite = "missile-large";
@@ -179,13 +121,6 @@ public class DoodleTankUnits {
                     trailLength = 4;
                     hitEffect = despawnEffect = Fx.hitBulletColor;
                 }};
-            }});
-
-            parts.add(new RegionPart("-glow") {{
-                color = Color.red;
-                blending = Blending.additive;
-                layer = -1f;
-                outline = false;
             }});
         }};
 
