@@ -16,7 +16,7 @@ public class DoodleUnitType extends UnitType{
         ammoType = new ItemAmmoType(Items.beryllium);
         researchCostMultiplier = 10f;
 
-        squareShape = true;
+        squareShape = false;
         omniMovement = false;
         rotateMoveFirst = true;
         rotateSpeed = 1.3f;
