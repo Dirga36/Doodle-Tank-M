@@ -1,4 +1,4 @@
-package doodletank.type.unit;
+package doodle.type.unit;
 
 import mindustry.content.*;
 import mindustry.graphics.*;
@@ -6,9 +6,9 @@ import mindustry.type.*;
 import mindustry.type.ammo.*;
 import mindustry.world.meta.*;
 
-public class DoodleTankUnitType extends UnitType{
+public class DoodleUnitType extends UnitType{
 
-    public DoodleTankUnitType(String name){
+    public DoodleUnitType(String name){
         super(name);
 
         outlineColor = Pal.darkOutline;

@@ -1,4 +1,4 @@
-package doodletank.content;
+package doodle.content;
 
 import arc.Core;
 import arc.assets.AssetDescriptor;
@@ -6,7 +6,7 @@ import arc.assets.loaders.SoundLoader;
 import arc.audio.Sound;
 import mindustry.Vars;
 
-public class DoodleTankSounds {
+public class DoodleSounds {
     public static Sound largeCannon = new Sound();
     public static Sound mediumCannon = new Sound();
     public static Sound dullExplosion = new Sound();
@@ -29,8 +29,8 @@ public class DoodleTankSounds {
     }
 
     public static void load(){
-        largeCannon = loadSound("basic-in-mindustry-large-cannon");
-        mediumCannon = loadSound("basic-in-mindustry-medium-cannon");
-        dullExplosion = loadSound("basic-in-mindustry-dull-explosion");
+        largeCannon = loadSound("doodle-tank-mod-large-cannon");
+        mediumCannon = loadSound("doodle-tank-mod-medium-cannon");
+        dullExplosion = loadSound("doodle-tank-mod-dull-explosion");
     }
 }

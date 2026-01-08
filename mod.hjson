@@ -1,7 +1,7 @@
 displayName: "Doodle Tank"
-name: "doodle-tank"
+name: "doodle-tank-mod"
 author: "Dirge"
-main: "doodletank.DoodleTankMod"
+main: "doodle.DoodleTankMod"
 description: "Add doodle looking tank unit to Mindustry."
 version: 1.0
 minGameVersion: 146

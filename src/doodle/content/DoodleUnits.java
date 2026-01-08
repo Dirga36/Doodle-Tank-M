@@ -1,8 +1,8 @@
-package doodletank.content;
+package doodle.content;
 
 import arc.graphics.Color;
 import arc.math.geom.Rect;
-import doodletank.type.unit.DoodleTankUnitType;
+import doodle.type.unit.DoodleUnitType;
 import mindustry.ai.types.GroundAI;
 import mindustry.content.Fx;
 import mindustry.entities.bullet.BasicBulletType;
@@ -10,12 +10,12 @@ import mindustry.entities.effect.ExplosionEffect;
 import mindustry.gen.TankUnit;
 import mindustry.type.Weapon;
 
-public class DoodleTankUnits {
-    public static DoodleTankUnitType cax;
+public class DoodleUnits {
+    public static DoodleUnitType cax;
 
     public static void load() {
 
-        cax = new DoodleTankUnitType("cax") {{
+        cax = new DoodleUnitType("cax") {{
             constructor = TankUnit::create;
             aiController = GroundAI::new;
 
@@ -30,8 +30,8 @@ public class DoodleTankUnits {
             float xo = 231f / 2f, yo = 231f / 2f;
             treadRects = new Rect[]{new Rect(27 - xo, 152 - yo, 56, 73), new Rect(24 - xo, 51 - 9 - yo, 29, 17), new Rect(59 - xo, 18 - 9 - yo, 39, 19)};
 
-            weapons.add(new Weapon("doodletank-cax-weapon") {{
-                shootSound = DoodleTankSounds.largeCannon;
+            weapons.add(new Weapon("doodle-tank-mod-cax-weapon") {{
+                shootSound = DoodleSounds.largeCannon;
                 layerOffset = 0.1f;
                 reload = 100f;
                 shootY = 32.5f;
@@ -101,7 +101,7 @@ public class DoodleTankUnits {
                 }};
             }});
 
-            weapons.add(new Weapon("doodletank-cax-point-weapon") {{
+            weapons.add(new Weapon("doodle-tank-mod-cax-point-weapon") {{
                 reload = 5f;
                 x = 3f;
                 y = 5.5f;

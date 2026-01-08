@@ -1,4 +1,4 @@
-package doodletank.content;
+package doodle.content;
 
 import arc.graphics.*;
 import arc.math.*;
@@ -40,7 +40,7 @@ import mindustry.content.Items;
 
 import static mindustry.type.ItemStack.*;
 
-public class DoodleTankBlocks
+public class DoodleBlocks
 {
     public static Block SketchBook;
 
@@ -50,7 +50,7 @@ public class DoodleTankBlocks
             requirements(Category.units, with(Items.silicon, 200, Items.beryllium, 150));
             size = 3;
             configurable = false;
-            plans.add(new UnitPlan(DoodleTankUnits.cax, 60f * 35f, with(Items.beryllium, 40, Items.silicon, 50)));
+            plans.add(new UnitPlan(DoodleUnits.cax, 60f * 35f, with(Items.beryllium, 40, Items.silicon, 50)));
             researchCost = with(Items.beryllium, 200, Items.graphite, 80, Items.silicon, 80);
             regionSuffix = "-dark";
             fogRadius = 3;
