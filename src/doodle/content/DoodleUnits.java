@@ -31,7 +31,7 @@ public class DoodleUnits {
             range = 500f;
 
             //tread trail effect
-            treadRects = new Rect[]{new Rect(17, 333 , 60, 70), new Rect(157, 333 , 60, 70)};
+            treadRects = new Rect[]{new Rect(0, 0 , 140, 150)};
 
             //main weapon
             weapons.add(new Weapon("doodle-tank-mod-cax-weapon") {{
