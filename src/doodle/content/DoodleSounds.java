@@ -10,6 +10,7 @@ public class DoodleSounds {
     public static Sound largeCannon = new Sound();
     public static Sound mediumCannon = new Sound();
     public static Sound dullExplosion = new Sound();
+    public static Sound pew = new Sound();
     
     private static Sound loadSound(String soundName){
         if(!Vars.headless) {
@@ -32,5 +33,6 @@ public class DoodleSounds {
         largeCannon = loadSound("doodle-tank-mod-large-cannon");
         mediumCannon = loadSound("doodle-tank-mod-medium-cannon");
         dullExplosion = loadSound("doodle-tank-mod-dull-explosion");
+        dullExplosion = loadSound("doodle-tank-mod-pew");
     }
 }

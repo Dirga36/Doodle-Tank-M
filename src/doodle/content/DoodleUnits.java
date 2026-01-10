@@ -7,6 +7,7 @@ import mindustry.ai.types.GroundAI;
 import mindustry.content.Fx;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.effect.ExplosionEffect;
+import mindustry.entities.part.RegionPart;
 import mindustry.gen.TankUnit;
 import mindustry.type.Weapon;
 
@@ -19,42 +20,47 @@ public class DoodleUnits {
             constructor = TankUnit::create;
             aiController = GroundAI::new;
 
-            hitSize = 46f;
+            hitSize = 50f;
             treadPullOffset = 1;
-            speed = 0.48f;
-            health = 22000;
-            armor = 26f;
+            speed = 0.7f;
+            health = 17000;
+            armor = 30f;
             crushDamage = 25f / 5f;
-            rotateSpeed = 0.8f;
+            rotateSpeed = 1f;
             range = 500f;
 
             float xo = 231f / 2f, yo = 231f / 2f;
             treadRects = new Rect[]{new Rect(27 - xo, 152 - yo, 56, 73), new Rect(24 - xo, 51 - 9 - yo, 29, 17), new Rect(59 - xo, 18 - 9 - yo, 39, 19)};
 
             weapons.add(new Weapon("doodle-tank-mod-cax-weapon") {{
-                shootSound = DoodleSounds.largeCannon;
+                shootSound = DoodleSounds.mediumCannon;
                 layerOffset = 0.1f;
                 reload = 100f;
                 shootY = 32.5f;
-                shake = 5f;
-                recoil = 5f;
+                shake = 3f;
+                recoil = 0f;
                 rotate = true;
                 rotateSpeed = 0.6f;
                 mirror = false;
                 x = 0f;
                 y = 7f;
                 shadow = 50f;
-                heatColor = Color.valueOf("f9350f");
-                shootWarmupSpeed = 0.06f;
                 cooldownTime = 110f;
-                heatColor = Color.valueOf("f9350f");
-                minWarmup = 0.9f;
 
-                bullet = new BasicBulletType(8f, 360f) {{
+                parts.addAll(
+                    new RegionPart("-suspension-barrel") {{
+                        progress = PartProgress.recoil;
+                        mirror = false;
+                        under = true;
+                        moveY = -5f;
+                    }}
+                );
+
+                bullet = new BasicBulletType(15f, 400f) {{
                     sprite = "missile-large";
                     width = 12f;
                     height = 20f;
-                    lifetime = 35f;
+                    lifetime = 200f;
                     hitSize = 6f;
 
                     smokeEffect = Fx.shootSmokeTitan;
@@ -66,6 +72,7 @@ public class DoodleUnits {
                     trailWidth = 4f;
                     trailLength = 9;
                     hitEffect = despawnEffect = Fx.massiveExplosion;
+                    despawnSound = DoodleSounds.dullExplosion;
 
                     shootEffect = new ExplosionEffect() {{
                         lifetime = 40f;
@@ -103,9 +110,10 @@ public class DoodleUnits {
             }});
 
             weapons.add(new Weapon("doodle-tank-mod-cax-point-weapon") {{
+                shootSound = DoodleSounds.pew;
                 reload = 5f;
-                x = 3f;
-                y = 5.5f;
+                x = 5f;
+                y = 14f;
                 shootY = 5.5f;
                 recoil = 0f;
                 rotate = false;
@@ -123,6 +131,7 @@ public class DoodleUnits {
                     hitEffect = despawnEffect = Fx.hitBulletColor;
                 }};
             }});
+
         }};
 
     }
