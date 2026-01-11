@@ -31,7 +31,7 @@ public class DoodleUnits {
             range = 500f;
 
             //tread trail effect
-            treadRects = new Rect[]{new Rect(0, 0 , 140, 150)};
+            treadRects = new Rect[]{new Rect(0, 0, 140, 150)};
 
             //main weapon
             weapons.add(new Weapon("doodle-tank-mod-cax-weapon") {{
@@ -50,12 +50,12 @@ public class DoodleUnits {
                 cooldownTime = 110f;
 
                 parts.addAll(
-                    new RegionPart("-suspension-barrel") {{
-                        progress = PartProgress.recoil;
-                        mirror = false;
-                        under = true;
-                        moveY = -5f; //
-                    }}
+                        new RegionPart("-suspension-barrel") {{
+                            progress = PartProgress.recoil;
+                            mirror = false;
+                            under = true;
+                            moveY = -5f; //
+                        }}
                 );
 
                 bullet = new BasicBulletType(15f, 400f) {{

@@ -1,14 +1,14 @@
 package doodle.type.unit;
 
-import mindustry.content.*;
-import mindustry.graphics.*;
-import mindustry.type.*;
-import mindustry.type.ammo.*;
-import mindustry.world.meta.*;
+import mindustry.content.Items;
+import mindustry.graphics.Pal;
+import mindustry.type.UnitType;
+import mindustry.type.ammo.ItemAmmoType;
+import mindustry.world.meta.Env;
 
-public class DoodleUnitType extends UnitType{
+public class DoodleUnitType extends UnitType {
 
-    public DoodleUnitType(String name){
+    public DoodleUnitType(String name) {
         super(name);
 
         outlineColor = Pal.darkOutline;

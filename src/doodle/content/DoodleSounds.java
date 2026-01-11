@@ -11,9 +11,9 @@ public class DoodleSounds {
     public static Sound mediumCannon = new Sound();
     public static Sound dullExplosion = new Sound();
     public static Sound pew = new Sound();
-    
-    private static Sound loadSound(String soundName){
-        if(!Vars.headless) {
+
+    private static Sound loadSound(String soundName) {
+        if (!Vars.headless) {
             String name = "sounds/" + soundName;
             String path = Vars.tree.get(name + ".ogg").exists() ? name + ".ogg" : name + ".mp3";
 
@@ -29,7 +29,7 @@ public class DoodleSounds {
         }
     }
 
-    public static void load(){
+    public static void load() {
         largeCannon = loadSound("doodle-tank-mod-large-cannon");
         mediumCannon = loadSound("doodle-tank-mod-medium-cannon");
         dullExplosion = loadSound("doodle-tank-mod-dull-explosion");
