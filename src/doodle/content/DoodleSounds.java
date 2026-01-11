@@ -33,6 +33,6 @@ public class DoodleSounds {
         largeCannon = loadSound("doodle-tank-mod-large-cannon");
         mediumCannon = loadSound("doodle-tank-mod-medium-cannon");
         dullExplosion = loadSound("doodle-tank-mod-dull-explosion");
-        dullExplosion = loadSound("doodle-tank-mod-pew");
+        pew = loadSound("doodle-tank-mod-pew");
     }
 }
