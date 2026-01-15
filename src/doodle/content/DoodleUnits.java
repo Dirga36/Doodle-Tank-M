@@ -28,16 +28,15 @@ public class DoodleUnits {
             armor = 30f;
             crushDamage = 25f / 5f;
             rotateSpeed = 1f;
-            range = 500f;
             targetAir = false;
+            range = 300f;
 
             //tread trail effect
             treadRects = new Rect[]{new Rect(0, 0, 140, 150)};
 
             //main weapon
             weapons.add(new Weapon("doodle-tank-mod-cax-weapon") {{
-                top = false;
-                shootSound = DoodleSounds.mediumCannon;
+                //shootSound = DoodleSounds.mediumCannon;
                 layerOffset = 0.1f;
                 reload = 100f;
                 shootY = 60f;
@@ -67,7 +66,7 @@ public class DoodleUnits {
                     lifetime = 500f;
                     hitSize = 6f;
 
-                    smokeEffect = Fx.shootSmokeTitan; //is this the muzzle flash handler?
+                    smokeEffect = Fx.shootSmokeTitan;
                     pierceCap = 3;
                     pierce = true;
                     pierceBuilding = true;
@@ -76,7 +75,7 @@ public class DoodleUnits {
                     trailWidth = 4f;
                     trailLength = 9;
                     hitEffect = despawnEffect = Fx.massiveExplosion;
-                    despawnSound = DoodleSounds.dullExplosion;
+                    //despawnSound = DoodleSounds.dullExplosion;
                     ejectEffect = Fx.casing4;
 
                     shootEffect = new ExplosionEffect() {{
@@ -116,8 +115,7 @@ public class DoodleUnits {
 
             //secondary weapon (WIP)
             weapons.add(new Weapon("doodle-tank-mod-cax-point-weapon") {{
-                top = false;
-                shootSound = DoodleSounds.pew;
+                //shootSound = DoodleSounds.pew;
                 reload = 5f;
                 x = 5f;
                 y = 14f;
