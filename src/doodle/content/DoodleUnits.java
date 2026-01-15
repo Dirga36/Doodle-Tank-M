@@ -29,32 +29,34 @@ public class DoodleUnits {
             crushDamage = 25f / 5f;
             rotateSpeed = 1f;
             range = 500f;
+            targetAir = false;
 
             //tread trail effect
             treadRects = new Rect[]{new Rect(0, 0, 140, 150)};
 
             //main weapon
             weapons.add(new Weapon("doodle-tank-mod-cax-weapon") {{
+                top = false;
                 shootSound = DoodleSounds.mediumCannon;
                 layerOffset = 0.1f;
                 reload = 100f;
-                shootY = 32.5f;
+                shootY = 60f;
                 shake = 5f;
                 recoil = 0f;
                 rotate = true;
-                rotateSpeed = 0.6f;
+                rotateSpeed = 0.7f;
                 mirror = false;
                 x = 0f;
                 y = 7f;
                 shadow = 50f;
                 cooldownTime = 110f;
-
+                
                 parts.addAll(
                         new RegionPart("-suspension-barrel") {{
                             progress = PartProgress.recoil;
                             mirror = false;
                             under = true;
-                            moveY = -5f; //
+                            moveY = -5f;
                         }}
                 );
 
@@ -62,7 +64,7 @@ public class DoodleUnits {
                     sprite = "missile-large";
                     width = 12f;
                     height = 20f;
-                    lifetime = 90f;
+                    lifetime = 500f;
                     hitSize = 6f;
 
                     smokeEffect = Fx.shootSmokeTitan; //is this the muzzle flash handler?
@@ -75,6 +77,7 @@ public class DoodleUnits {
                     trailLength = 9;
                     hitEffect = despawnEffect = Fx.massiveExplosion;
                     despawnSound = DoodleSounds.dullExplosion;
+                    ejectEffect = Fx.casing4;
 
                     shootEffect = new ExplosionEffect() {{
                         lifetime = 40f;
@@ -113,6 +116,7 @@ public class DoodleUnits {
 
             //secondary weapon (WIP)
             weapons.add(new Weapon("doodle-tank-mod-cax-point-weapon") {{
+                top = false;
                 shootSound = DoodleSounds.pew;
                 reload = 5f;
                 x = 5f;
