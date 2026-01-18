@@ -14,4 +14,4 @@ public class DoodleTankMod extends Mod {
         DoodleBlocks.load();
     }
 
-}cax-secondary-weaponcax-secondary-weaponcax-secondary-weaponcax-secondary-weaponcax-secondary-weaponcax-secondary-weaponcax-secondary-weaponcax-secondary-weaponcax-secondary-weaponcax-secondary-weaponcax-secondary-weaponcax-secondary-weaponcax-secondary-weapon
+}
