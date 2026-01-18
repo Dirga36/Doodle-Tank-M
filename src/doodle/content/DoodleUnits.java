@@ -60,11 +60,11 @@ public class DoodleUnits {
                         }}
                 );
 
-                bullet = new BasicBulletType(15f, 400f) {{
+                bullet = new BasicBulletType(20f, 400f) {{
                     sprite = "missile-large";
                     width = 12f;
                     height = 20f;
-                    lifetime = 50f;
+                    lifetime = 300f;
                     hitSize = 6f;
 
                     smokeEffect = Fx.shootSmokeTitan;
@@ -116,10 +116,10 @@ public class DoodleUnits {
 
             //secondary weapon (WIP)
             weapons.add(new Weapon("doodle-tank-mod-cax-point-weapon") {{
-                //shootSound = DoodleSounds.pew;
+                shootSound = DoodleSounds.pew;
                 reload = 5f;
-                x = 5f;
-                y = 14f;
+                x = 0f;
+                y = 0f;
                 shootY = 5.5f;
                 recoil = 0f;
                 rotate = false;
