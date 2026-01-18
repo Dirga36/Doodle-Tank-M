@@ -1,5 +1,6 @@
 package doodle.content;
 
+import arc.Core;
 import arc.graphics.Color;
 import arc.math.geom.Rect;
 import doodle.type.unit.DoodleUnitType;
@@ -10,6 +11,7 @@ import mindustry.entities.effect.ExplosionEffect;
 import mindustry.entities.part.RegionPart;
 import mindustry.gen.TankUnit;
 import mindustry.type.Weapon;
+import mindustry.Vars;
 
 public class DoodleUnits {
     public static DoodleUnitType cax;
@@ -137,6 +139,14 @@ public class DoodleUnits {
             }});
 
         }};
+
+        if (!Vars.headless) {
+            var icon = Core.atlas.find("doodle-tank-mod-cax-icon");
+            if (icon != null && icon.found()) {
+                cax.uiIcon = icon;
+                cax.fullIcon = icon;
+            }
+        }
 
     }
 }
