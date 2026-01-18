@@ -6,11 +6,7 @@ import doodle.content.DoodleUnits;
 import mindustry.mod.Mod;
 
 public class DoodleTankMod extends Mod {
-
-    public void DoodleTank() {
-        //
-    }
-
+ 
     @Override
     public void loadContent() {
         DoodleSounds.load();
