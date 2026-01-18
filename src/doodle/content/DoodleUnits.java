@@ -113,30 +113,7 @@ public class DoodleUnits {
 
                 }};
             }});
-
-            //secondary weapon (WIP)
-            weapons.add(new Weapon("doodle-tank-mod-cax-point-weapon") {{
-                shootSound = DoodleSounds.pew;
-                reload = 5f;
-                x = 0f;
-                y = 0f;
-                shootY = 5.5f;
-                recoil = 0f;
-                rotate = false;
-                mirror = false;
-
-                bullet = new BasicBulletType(4.5f, 25) {{
-                    width = 6.5f;
-                    height = 11f;
-                    shootEffect = Fx.sparkShoot;
-                    hitColor = backColor = trailColor = Color.valueOf("feb380");
-                    frontColor = Color.white;
-                    trailWidth = 1.5f;
-                    trailLength = 4;
-                    hitEffect = despawnEffect = Fx.hitBulletColor;
-                }};
-            }});
-
+            
         }};
 
 
