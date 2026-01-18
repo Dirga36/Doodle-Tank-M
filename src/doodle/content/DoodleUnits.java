@@ -31,14 +31,13 @@ public class DoodleUnits {
             crushDamage = 25f / 5f;
             rotateSpeed = 1f;
             targetAir = false;
-            range = 300f;
 
             //tread trail effect
             treadRects = new Rect[]{new Rect(0, 0, 140, 150)};
 
             //main weapon
             weapons.add(new Weapon("doodle-tank-mod-cax-weapon") {{
-                //shootSound = DoodleSounds.mediumCannon;
+                shootSound = DoodleSounds.mediumCannon;
                 layerOffset = 0.1f;
                 reload = 100f;
                 shootY = 60f;
@@ -65,7 +64,7 @@ public class DoodleUnits {
                     sprite = "missile-large";
                     width = 12f;
                     height = 20f;
-                    lifetime = 500f;
+                    lifetime = 50f;
                     hitSize = 6f;
 
                     smokeEffect = Fx.shootSmokeTitan;
@@ -77,7 +76,7 @@ public class DoodleUnits {
                     trailWidth = 4f;
                     trailLength = 9;
                     hitEffect = despawnEffect = Fx.massiveExplosion;
-                    //despawnSound = DoodleSounds.dullExplosion;
+                    despawnSound = DoodleSounds.dullExplosion;
                     ejectEffect = Fx.casing4;
 
                     shootEffect = new ExplosionEffect() {{
@@ -138,15 +137,15 @@ public class DoodleUnits {
                 }};
             }});
 
+            if (!Vars.headless) {
+                var icon = Core.atlas.find("doodle-tank-mod-cax-icon");
+                if (icon != null && icon.found()) {
+                    cax.uiIcon = icon;
+                    cax.fullIcon = icon;
+                }
+            }
         }};
 
-        if (!Vars.headless) {
-            var icon = Core.atlas.find("doodle-tank-mod-cax-icon");
-            if (icon != null && icon.found()) {
-                cax.uiIcon = icon;
-                cax.fullIcon = icon;
-            }
-        }
 
     }
 }
