@@ -137,13 +137,6 @@ public class DoodleUnits {
                 }};
             }});
 
-            if (!Vars.headless) {
-                var icon = Core.atlas.find("doodle-tank-mod-cax-icon");
-                if (icon != null && icon.found()) {
-                    cax.uiIcon = icon;
-                    cax.fullIcon = icon;
-                }
-            }
         }};
 
 
