@@ -49,7 +49,7 @@ public class DoodleUnits {
                 y = 7f;
                 shadow = 50f;
                 cooldownTime = 110f;
-                
+
                 parts.addAll(
                         new RegionPart("-suspension-barrel") {{
                             progress = PartProgress.recoil;
