@@ -13,10 +13,10 @@ public class DoodleUnitType extends UnitType {
 
         outlineColor = Pal.darkOutline;
         envDisabled = Env.space;
-        ammoType = new ItemAmmoType(Items.beryllium);
+        ammoType = new ItemAmmoType(Items.graphite);
         researchCostMultiplier = 10f;
 
-        squareShape = false;
+        squareShape = true;
         omniMovement = false;
         rotateMoveFirst = true;
         rotateSpeed = 1.3f;

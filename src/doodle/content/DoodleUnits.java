@@ -1,17 +1,17 @@
 package doodle.content;
 
-import arc.Core;
 import arc.graphics.Color;
 import arc.math.geom.Rect;
 import doodle.type.unit.DoodleUnitType;
 import mindustry.ai.types.GroundAI;
 import mindustry.content.Fx;
+import mindustry.content.StatusEffects;
+import mindustry.entities.abilities.StatusFieldAbility;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.effect.ExplosionEffect;
 import mindustry.entities.part.RegionPart;
 import mindustry.gen.TankUnit;
 import mindustry.type.Weapon;
-import mindustry.Vars;
 
 public class DoodleUnits {
     public static DoodleUnitType cax;
@@ -31,6 +31,7 @@ public class DoodleUnits {
             crushDamage = 25f / 5f;
             rotateSpeed = 1f;
             targetAir = false;
+            abilities.add(new StatusFieldAbility(StatusEffects.overclock, 60f * 6, 60f * 6f, 100f));
 
             //tread trail effect
             treadRects = new Rect[]{new Rect(0, 0, 140, 150)};
@@ -42,7 +43,7 @@ public class DoodleUnits {
                 reload = 100f;
                 shootY = 60f;
                 shake = 5f;
-                recoil = 0f;
+                recoil = 1f;
                 rotate = true;
                 rotateSpeed = 0.7f;
                 mirror = false;
@@ -113,7 +114,7 @@ public class DoodleUnits {
 
                 }};
             }});
-            
+
         }};
 
 
