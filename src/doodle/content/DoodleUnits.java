@@ -15,10 +15,12 @@ import mindustry.type.Weapon;
 
 public class DoodleUnits {
     public static DoodleUnitType cax;
+    public static DoodleUnitType unit103;
 
     public static void load() {
 
         cax = new DoodleUnitType("cax") {{
+
             constructor = TankUnit::create;
             aiController = GroundAI::new;
 
@@ -118,5 +120,23 @@ public class DoodleUnits {
         }};
 
 
+        unit103 = new DoodleUnitType("103") {{
+
+            constructor = TankUnit::create;
+            aiController = GroundAI::new;
+
+            //main weapon
+            weapons.add(new Weapon("doodle-tank-mod-103-weapon") {{
+            }});
+
+            //secondary weapon
+            weapons.add(new Weapon("doodle-tank-mod-103-weapon-1") {{
+            }});
+
+            //third weapon
+            weapons.add(new Weapon("doodle-tank-mod-103-weapon-2") {{
+            }});
+
+        }};
     }
 }
