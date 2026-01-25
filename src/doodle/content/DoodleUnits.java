@@ -48,7 +48,7 @@ public class DoodleUnits {
                 shake = 5f;
                 recoil = 1f;
                 rotate = true;
-                rotateSpeed = 0.7f;
+                rotateSpeed = 1.2f;
                 mirror = false;
                 x = 0f;
                 y = 7f;
@@ -67,7 +67,7 @@ public class DoodleUnits {
                     sprite = "missile-large";
                     width = 12f;
                     height = 20f;
-                    lifetime = 100f;
+                    lifetime = 15f;
                     hitSize = 6f;
 
                     smokeEffect = Fx.shootSmokeTitan;
@@ -126,6 +126,8 @@ public class DoodleUnits {
             constructor = TankUnit::create;
             aiController = GroundAI::new;
 
+            omniMovement = true;
+
             //attributes
             hitSize = 50f;
             treadPullOffset = 1;
@@ -155,22 +157,22 @@ public class DoodleUnits {
                 x = 0f;
                 y = 35f;
 
-                bullet = new BasicBulletType(20f, 400f) {{
+                bullet = new BasicBulletType(20f, 420f) {{
                     sprite = "missile-large";
-                    width = 12f;
-                    height = 20f;
-                    lifetime = 100f;
+                    width = 15f;
+                    height = 18f;
+                    lifetime = 20f;
                     hitSize = 6f;
 
                     smokeEffect = Fx.shootSmokeTitan;
-                    pierceCap = 3;
+                    pierceCap = 2;
                     pierce = true;
-                    pierceBuilding = true;
+                    pierceBuilding = false;
                     hitColor = backColor = trailColor = Color.valueOf("feb380");
                     frontColor = Color.white;
                     trailWidth = 4f;
                     trailLength = 9;
-                    hitEffect = despawnEffect = Fx.massiveExplosion;
+                    hitEffect = despawnEffect = Fx.titanExplosion;
                     despawnSound = DoodleSounds.dullExplosion;
                     ejectEffect = Fx.casing4;
 
@@ -189,8 +191,8 @@ public class DoodleUnits {
                         sparkStroke = 3f;
                     }};
 
-                    splashDamage = 65f;
-                    splashDamageRadius = 70f;
+                    splashDamage = 50f;
+                    splashDamageRadius = 185f;
                     despawnEffect = new ExplosionEffect() {{
                         lifetime = 50f;
                         waveStroke = 4f;
@@ -224,7 +226,7 @@ public class DoodleUnits {
                 rotateSpeed = 0f;
                 mirror = false;
                 x = -18f;
-                y = 37f;
+                y = 36f;
                 shootCone = 1f;
 
                 bullet = new BasicBulletType(4.5f, 25) {{
