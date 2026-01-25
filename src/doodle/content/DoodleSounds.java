@@ -11,6 +11,7 @@ public class DoodleSounds {
     public static Sound mediumCannon = new Sound();
     public static Sound dullExplosion = new Sound();
     public static Sound pew = new Sound();
+    public static Sound shootSnap = new Sound();
     
     private static Sound loadSound(String soundName){
         if(!Vars.headless) {
@@ -34,5 +35,6 @@ public class DoodleSounds {
         mediumCannon = loadSound("medium-cannon");
         dullExplosion = loadSound("dull-explosion");
         pew = loadSound("pew");
+        shootSnap = loadSound("shoot-snap");
     }
 }
