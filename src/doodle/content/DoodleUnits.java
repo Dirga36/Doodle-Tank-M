@@ -55,15 +55,19 @@ public class DoodleUnits {
                 shadow = 50f;
 
                 parts.addAll(
+                    
                         new RegionPart("-suspension-barrel") {{
+
                             progress = PartProgress.recoil;
                             mirror = false;
                             under = true;
                             moveY = -5f;
+
                         }}
                 );
 
                 bullet = new BasicBulletType(20f, 400f) {{
+
                     sprite = "missile-large";
                     width = 12f;
                     height = 20f;
@@ -83,6 +87,7 @@ public class DoodleUnits {
                     ejectEffect = Fx.casing4;
 
                     shootEffect = new ExplosionEffect() {{
+
                         lifetime = 40f;
                         waveStroke = 4f;
                         waveColor = sparkColor = trailColor;
@@ -95,11 +100,14 @@ public class DoodleUnits {
                         sparkRad = 40f;
                         sparkLen = 4f;
                         sparkStroke = 3f;
+
                     }};
 
                     splashDamage = 65f;
                     splashDamageRadius = 70f;
+
                     despawnEffect = new ExplosionEffect() {{
+
                         lifetime = 50f;
                         waveStroke = 4f;
                         waveColor = sparkColor = trailColor;
@@ -112,6 +120,7 @@ public class DoodleUnits {
                         sparkRad = 30f;
                         sparkLen = 3f;
                         sparkStroke = 1.5f;
+
                     }};
 
                 }};
@@ -119,7 +128,6 @@ public class DoodleUnits {
             }});
 
         }};
-
 
         unit103 = new DoodleUnitType("103") {{
 
@@ -158,6 +166,7 @@ public class DoodleUnits {
                 y = 35f;
 
                 bullet = new BasicBulletType(20f, 420f) {{
+
                     sprite = "missile-large";
                     width = 15f;
                     height = 18f;
@@ -193,7 +202,9 @@ public class DoodleUnits {
 
                     splashDamage = 50f;
                     splashDamageRadius = 185f;
+
                     despawnEffect = new ExplosionEffect() {{
+
                         lifetime = 50f;
                         waveStroke = 4f;
                         waveColor = sparkColor = trailColor;
@@ -206,6 +217,7 @@ public class DoodleUnits {
                         sparkRad = 30f;
                         sparkLen = 3f;
                         sparkStroke = 1.5f;
+
                     }};
 
                 }};
@@ -230,6 +242,7 @@ public class DoodleUnits {
                 shootCone = 1f;
 
                 bullet = new BasicBulletType(4.5f, 25) {{
+
                     width = 6.5f;
                     height = 11f;
                     shootEffect = Fx.sparkShoot;
@@ -238,6 +251,7 @@ public class DoodleUnits {
                     trailWidth = 1.5f;
                     trailLength = 4;
                     hitEffect = despawnEffect = Fx.hitBulletColor;
+                    
                 }};
 
             }});
@@ -270,8 +284,11 @@ public class DoodleUnits {
                     splashDamage = 27f * 1.5f;
                     splashDamageRadius = 15f;
                 }};
+
             }});
 
         }};
+
     }
+
 }
