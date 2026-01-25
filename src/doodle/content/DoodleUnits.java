@@ -10,6 +10,7 @@ import mindustry.entities.abilities.StatusFieldAbility;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.effect.ExplosionEffect;
 import mindustry.entities.part.RegionPart;
+import mindustry.entities.pattern.ShootAlternate;
 import mindustry.gen.TankUnit;
 import mindustry.type.Weapon;
 
@@ -29,11 +30,11 @@ public class DoodleUnits {
             treadPullOffset = 1;
             speed = 0.7f;
             health = 17000;
-            armor = 30f;
+            armor = 10f;
             crushDamage = 25f / 5f;
             rotateSpeed = 1f;
             targetAir = false;
-            abilities.add(new StatusFieldAbility(StatusEffects.overclock, 60f * 6, 60f * 6f, 100f));
+            abilities.add(new StatusFieldAbility(StatusEffects.overclock, 60f * 6, 60f * 6f, 150f));
 
             //tread trail effect
             treadRects = new Rect[]{new Rect(0, 0, 140, 150)};
@@ -55,7 +56,7 @@ public class DoodleUnits {
                 shadow = 50f;
 
                 parts.addAll(
-                    
+
                         new RegionPart("-suspension-barrel") {{
 
                             progress = PartProgress.recoil;
@@ -66,16 +67,16 @@ public class DoodleUnits {
                         }}
                 );
 
-                bullet = new BasicBulletType(20f, 400f) {{
+                bullet = new BasicBulletType(25f, 420f) {{
 
                     sprite = "missile-large";
                     width = 12f;
                     height = 20f;
-                    lifetime = 15f;
+                    lifetime = 22f;
                     hitSize = 6f;
 
                     smokeEffect = Fx.shootSmokeTitan;
-                    pierceCap = 3;
+                    pierceCap = 4;
                     pierce = true;
                     pierceBuilding = true;
                     hitColor = backColor = trailColor = Color.valueOf("feb380");
@@ -124,7 +125,7 @@ public class DoodleUnits {
                     }};
 
                 }};
-                
+
             }});
 
         }};
@@ -139,9 +140,9 @@ public class DoodleUnits {
             //attributes
             hitSize = 50f;
             treadPullOffset = 1;
-            speed = 0.8f;
-            health = 18000;
-            armor = 25f;
+            speed = 0.5f;
+            health = 22000;
+            armor = 15f;
             crushDamage = 25f / 5f;
             rotateSpeed = 2f;
             targetAir = true;
@@ -165,13 +166,14 @@ public class DoodleUnits {
                 x = 0f;
                 y = 35f;
 
-                bullet = new BasicBulletType(20f, 420f) {{
+                bullet = new BasicBulletType(20f, 220f) {{
 
                     sprite = "missile-large";
                     width = 15f;
                     height = 18f;
-                    lifetime = 20f;
+                    lifetime = 17f;
                     hitSize = 6f;
+                    knockback = 1f;
 
                     smokeEffect = Fx.shootSmokeTitan;
                     pierceCap = 2;
@@ -208,13 +210,13 @@ public class DoodleUnits {
                         lifetime = 50f;
                         waveStroke = 4f;
                         waveColor = sparkColor = trailColor;
-                        waveRad = 30f;
+                        waveRad = 50f;
                         smokeSize = 7f;
                         smokes = 6;
                         smokeSizeBase = 0f;
                         smokeColor = trailColor;
                         sparks = 5;
-                        sparkRad = 30f;
+                        sparkRad = 50f;
                         sparkLen = 3f;
                         sparkStroke = 1.5f;
 
@@ -229,7 +231,7 @@ public class DoodleUnits {
 
                 shootSound = DoodleSounds.pew;
                 layerOffset = 0.1f;
-                reload = 5f;
+                reload = 3.5f;
                 inaccuracy = 1;
                 shootY = 10f;
                 shake = 0f;
@@ -239,7 +241,8 @@ public class DoodleUnits {
                 mirror = false;
                 x = -18f;
                 y = 36f;
-                shootCone = 1f;
+                shootCone = 2f;
+                shoot = new ShootAlternate(4f);
 
                 bullet = new BasicBulletType(4.5f, 25) {{
 
@@ -251,7 +254,7 @@ public class DoodleUnits {
                     trailWidth = 1.5f;
                     trailLength = 4;
                     hitEffect = despawnEffect = Fx.hitBulletColor;
-                    
+
                 }};
 
             }});
@@ -261,7 +264,7 @@ public class DoodleUnits {
 
                 shootSound = DoodleSounds.shootSnap;
                 layerOffset = 0.1f;
-                reload = 7f;
+                reload = 3f;
                 shootY = 15f;
                 shake = 0f;
                 recoil = 1f;
@@ -275,14 +278,14 @@ public class DoodleUnits {
                 controllable = false;
                 autoTarget = true;
 
-                bullet = new BasicBulletType(4.2f, 3) {{
+                bullet = new BasicBulletType(4.2f, 10) {{
                     lifetime = 60f;
                     shootEffect = Fx.shootSmall;
                     width = 6f;
                     height = 8f;
                     hitEffect = Fx.flakExplosion;
-                    splashDamage = 27f * 1.5f;
-                    splashDamageRadius = 15f;
+                    splashDamage = 30f * 1.5f;
+                    splashDamageRadius = 20f;
                 }};
 
             }});
