@@ -14,7 +14,7 @@ public class DoodleBlocks {
     public static void load() {
 
         SketchBook = new UnitFactory("sketch-book") {{
-            requirements(Category.units, with(Items.sporePod, 1000, Items.graphite, 2000, Items.plastanium, 2000));
+            requirements(Category.units, with(Items.graphite, 2000));
             size = 9;
             plans = Seq.with(
                     new UnitPlan(DoodleUnits.cax, 60f * 35f, with(Items.silicon, 900, Items.plastanium, 700, Items.graphite, 600, Items.sporePod, 400, Items.surgeAlloy, 1)),
