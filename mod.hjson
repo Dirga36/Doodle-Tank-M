@@ -1,5 +1,5 @@
 displayName: "Doodle Tank"
-name: "doodle-tank-mod"
+name: "dt"
 author: "Dirge"
 main: "doodle.DoodleTankMod"
 description: "Add doodle looking tank unit to Mindustry."

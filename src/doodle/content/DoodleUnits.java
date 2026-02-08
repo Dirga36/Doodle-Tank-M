@@ -40,7 +40,7 @@ public class DoodleUnits {
             treadRects = new Rect[]{new Rect(0, 0, 140, 150)};
 
             //main weapon
-            weapons.add(new Weapon("doodle-tank-mod-cax-weapon") {{
+            weapons.add(new Weapon("dt-cax-weapon") {{
 
                 shootSound = DoodleSounds.mediumCannon;
                 layerOffset = 0.1f;
@@ -152,7 +152,7 @@ public class DoodleUnits {
             treadRects = new Rect[]{new Rect(0, 0, 140, 150)};
 
             //main weapon
-            weapons.add(new Weapon("doodle-tank-mod-103-weapon") {{
+            weapons.add(new Weapon("dt-103-weapon") {{
 
                 shootSound = DoodleSounds.largeCannon;
                 layerOffset = 0.1f;
@@ -227,7 +227,7 @@ public class DoodleUnits {
             }});
 
             //secondary weapon
-            weapons.add(new Weapon("doodle-tank-mod-103-weapon-1") {{
+            weapons.add(new Weapon("dt-103-weapon-1") {{
 
                 shootSound = DoodleSounds.pew;
                 layerOffset = 0.1f;
@@ -260,7 +260,7 @@ public class DoodleUnits {
             }});
 
             //third weapon
-            weapons.add(new Weapon("doodle-tank-mod-103-weapon-2") {{
+            weapons.add(new Weapon("dt-103-weapon-2") {{
 
                 shootSound = DoodleSounds.shootSnap;
                 layerOffset = 0.1f;

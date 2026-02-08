@@ -1,5 +1,6 @@
 package doodle.content;
 
+import arc.graphics.Color;
 import mindustry.type.Item;
 
 public class DoodleItems {
@@ -8,15 +9,15 @@ public class DoodleItems {
 
     public static void load() {
 
-        paper = new Item("paper") {
+        paper = new Item("paper", Color.valueOf("#ebeef5")) {
         };
-        pencil = new Item("pencil") {
+        pencil = new Item("pencil", Color.valueOf("#ffffa3")) {
         };
-        eraser = new Item("eraser") {
+        eraser = new Item("eraser", Color.valueOf("#ebeef5")) {
         };
-        ruler = new Item("ruler") {
+        ruler = new Item("ruler", Color.valueOf("#ffd37f")) {
         };
-        pen = new Item("pen") {
+        pen = new Item("pen", Color.valueOf("#a4b8fa")) {
         };
 
     }

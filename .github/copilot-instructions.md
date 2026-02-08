@@ -1,7 +1,7 @@
 # Doodle Tank Mod – AI Agent Notes
 
 - Mindustry Java mod adding “doodle” tanks; Java 17 syntax compiled to Java 8 via jabel. Entrypoint is [src/doodle/DoodleTankMod.java](src/doodle/DoodleTankMod.java#L38-L41) with content load order `DoodleSounds → DoodleUnits → DoodleBlocks` (sounds first for weapon hooks, units before factories).
-- Builds: `./gradlew jar` (desktop, outputs build/libs/doodle-tank-modDesktop.jar); `./gradlew jarAndroid` (dex via d8, requires ANDROID_HOME); `./gradlew deploy` (bundles desktop+android, deletes temp Android jar). JARs include mod.hjson and assets via shading in [build.gradle](build.gradle#L47-L66).
+- Builds: `./gradlew jar` (desktop, outputs build/libs/dtDesktop.jar); `./gradlew jarAndroid` (dex via d8, requires ANDROID_HOME); `./gradlew deploy` (bundles desktop+android, deletes temp Android jar). JARs include mod.hjson and assets via shading in [build.gradle](build.gradle#L47-L66).
 - Content packaging: jars target Mindustry v154.2; compile uses `--release 8` despite Java 17 source (see [build.gradle](build.gradle#L16-L33)).
 
 ## Content architecture
@@ -10,9 +10,9 @@
 - Sounds load through `Vars.tree.loadSound` with full mod prefix names in [src/doodle/content/DoodleSounds.java](src/doodle/content/DoodleSounds.java#L6-L17); add `!Vars.headless` guards if introducing new asset loads for server/headless safety.
 
 ## Naming and assets
-- Code uses short identifiers (`"cax"`, `"sketch-book"`); asset files and sound keys use full prefix `doodle-tank-mod-{name}` to avoid collisions. Example weapon sprite prefix `doodle-tank-mod-cax-weapon` in [DoodleUnits.java](src/doodle/content/DoodleUnits.java#L37-L114).
+- Code uses short identifiers (`"cax"`, `"sketch-book"`); asset files and sound keys use full prefix `dt-{name}` to avoid collisions. Example weapon sprite prefix `dt-cax-weapon` in [DoodleUnits.java](src/doodle/content/DoodleUnits.java#L37-L114).
 - Sprite layout: `assets/sprites/units/{name}.png`, `{name}-cell.png`, `{name}-preview.png`, `{name}-treads.png`; weapon parts `assets/sprites/units/weapons/{weapon-name}-{part}.png`; factory sprites in `assets/sprites/blocks/units/` with optional `-top`/`-out` layers.
-- Sounds live in `assets/sounds/` as `.ogg`; ensure filenames exactly match load keys (`doodle-tank-mod-cax-mediumCannon.ogg`, etc.).
+- Sounds live in `assets/sounds/` as `.ogg`; ensure filenames exactly match load keys (`dt-cax-mediumCannon.ogg`, etc.).
 
 ## Patterns and pitfalls
 - Keep weapon/part sprites and names aligned; `RegionPart` animations expect suffix matching weapon name (see recoil part in [DoodleUnits.java](src/doodle/content/DoodleUnits.java#L53-L60)).
