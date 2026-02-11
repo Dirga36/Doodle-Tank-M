@@ -22,6 +22,8 @@ public class DoodleUnits {
 
         cax = new DoodleUnitType("cax") {{
 
+            alwaysUnlocked = true;
+
             constructor = TankUnit::create;
             aiController = GroundAI::new;
 
@@ -131,6 +133,8 @@ public class DoodleUnits {
         }};
 
         unit103 = new DoodleUnitType("103") {{
+
+            alwaysUnlocked = true;
 
             constructor = TankUnit::create;
             aiController = GroundAI::new;

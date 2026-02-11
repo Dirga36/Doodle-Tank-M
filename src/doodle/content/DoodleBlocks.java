@@ -15,6 +15,7 @@ public class DoodleBlocks {
     public static void load() {
 
         SketchBook = new UnitFactory("sketch-book") {{
+            alwaysUnlocked = true;
             requirements(Category.units, with(DoodleItems.paper, 4000, Items.silicon, 3000, DoodleItems.eraser, 1200, DoodleItems.pen, 1000, DoodleItems.ruler, 1000, Items.plastanium, 600, DoodleItems.pencil, 600, Items.surgeAlloy, 800));
             consumeLiquid(Liquids.oil, 3f);
             consumePower(25f);

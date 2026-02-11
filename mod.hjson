@@ -1,8 +1,11 @@
 displayName: "Doodle Tank"
 name: "dt"
-author: "Dirge"
+author: "[accent[]]Dirge"
 main: "doodle.DoodleTankMod"
-description: "Add doodle looking tank unit to Mindustry."
+description: "Add doodle looking tank unit to Mindustry. \n\n[yellow[]]Dependencies:[[]]\n - [accent]Beta[[]][white]Mindy[[]] ([gray]Provides item shop for obtaining the resources[[]])"
 version: 1.0
 minGameVersion: 146
 java: true
+dependencies: [
+  betamindy
+]
