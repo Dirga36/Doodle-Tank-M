@@ -6,13 +6,45 @@ import doodle.content.DoodleSounds;
 import doodle.content.DoodleUnits;
 import mindustry.mod.Mod;
 
+/**
+ * Main entry point for the Doodle Tank mod.
+ * 
+ * This mod adds doodle-style tanks with custom items, units, and factories to Mindustry.
+ * All content is loaded in a specific order to ensure proper dependency resolution:
+ * 
+ *   Sounds - must load first so weapons can reference them
+ *   Items - custom items used in factory requirements
+ *   Units - tank units that reference sounds and items
+ *   Blocks - factories that create units and consume items
+ * </ol>
+ * 
+ * @author Dirge
+ * @version 1.0
+ */
 public class DoodleTankMod extends Mod {
  
+    /**
+     * Loads all mod content in the correct dependency order.
+     * 
+     * Critical: The load order must not be changed:
+     * 
+     *   Sounds load first so weapon definitions can reference them
+     *   Items load before units/blocks that consume them
+     *   Units load before blocks to avoid null references in UnitFactory.plans
+     * 
+     */
     @Override
     public void loadContent() {
+        // Load sounds first - weapons will reference these
         DoodleSounds.load();
+        
+        // Load items - units and blocks will need these
         DoodleItems.load();
+        
+        // Load units - blocks will reference these in build plans
         DoodleUnits.load();
+        
+        // Load blocks last - they depend on units and items
         DoodleBlocks.load();
     }
 

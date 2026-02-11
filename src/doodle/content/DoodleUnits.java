@@ -14,81 +14,115 @@ import mindustry.entities.pattern.ShootAlternate;
 import mindustry.gen.TankUnit;
 import mindustry.type.Weapon;
 
+/**
+ * Contains all custom tank units used in the Doodle Tank mod.
+ * 
+ * Units must be loaded after items and sounds (which they reference) but before
+ * blocks (which reference units in their production plans). Each unit extends
+ * {@link DoodleUnitType} for shared tank characteristics.
+ * 
+ * Asset naming: Sprites use "dt-" prefix (e.g., "dt-cax.png") while code
+ * uses short names ("cax") to avoid collisions with base game assets.
+ */
 public class DoodleUnits {
+    
+    /** CAX medium tank - rotating turret with powerful cannon and overclock aura */
     public static DoodleUnitType cax;
+    
+    /** Unit 103 heavy tank - fixed gun with secondary weapons and anti-air capability */
     public static DoodleUnitType unit103;
 
+    /**
+     * Initializes all tank units with their configurations.
+     * 
+     * Uses double-brace initialization pattern for clean inline configuration
+     * of unit attributes, weapons, abilities, and visual effects.
+     */
     public static void load() {
 
+        // === CAX MEDIUM TANK ===
+        // Medium tank with rotating turret, single powerful cannon, and team buff ability
         cax = new DoodleUnitType("cax") {{
 
             alwaysUnlocked = true;
 
-            constructor = TankUnit::create;
-            aiController = GroundAI::new;
+            // Unit implementation classes
+            constructor = TankUnit::create;      // Tank unit entity type
+            aiController = GroundAI::new;        // Ground-based AI behavior
 
-            //attributes
-            hitSize = 50f;
-            treadPullOffset = 1;
-            speed = 0.7f;
-            health = 17000;
-            armor = 10f;
-            crushDamage = 25f / 5f;
-            rotateSpeed = 1f;
-            targetAir = false;
-            abilities.add(new StatusFieldAbility(StatusEffects.overclock, 60f * 6, 60f * 6f, 150f));
+            // === Physical attributes ===
+            hitSize = 50f;                       // Collision radius in world units
+            treadPullOffset = 1;                 // Tread animation offset
+            speed = 0.7f;                        // Movement speed
+            health = 17000;                      // Hit points
+            armor = 10f;                         // Damage reduction value
+            crushDamage = 25f / 5f;              // Damage dealt when crushing units (5 per tick)
+            rotateSpeed = 1f;                    // Rotation speed multiplier
+            targetAir = false;                   // Cannot attack air units
+            
+            // Team buff ability - applies overclock to nearby friendly units
+            abilities.add(new StatusFieldAbility(
+                StatusEffects.overclock,         // Status effect to apply
+                60f * 6,                         // Duration: 6 seconds
+                60f * 6f,                        // Reload: 6 seconds
+                150f                             // Range: 150 world units
+            ));
 
-            //tread trail effect
+            // Tread trail effect - defines areas where tread marks appear
             treadRects = new Rect[]{new Rect(0, 0, 140, 150)};
 
-            //main weapon
+            // === MAIN WEAPON - Medium Cannon ===
             weapons.add(new Weapon("dt-cax-weapon") {{
 
                 shootSound = DoodleSounds.mediumCannon;
-                layerOffset = 0.1f;
-                reload = 100f;
-                shootY = 60f;
-                shake = 5f;
-                recoil = 1f;
-                rotate = true;
-                rotateSpeed = 1.2f;
-                mirror = false;
-                x = 0f;
-                y = 7f;
-                shadow = 50f;
+                layerOffset = 0.1f;              // Draw slightly above unit
+                reload = 100f;                    // Reload time in ticks (60 ticks = 1 second)
+                shootY = 60f;                     // Bullet spawn distance from weapon center
+                shake = 5f;                       // Screen shake intensity on fire
+                recoil = 1f;                      // Visual recoil distance
+                rotate = true;                    // Turret can rotate independently
+                rotateSpeed = 1.2f;               // Turret rotation speed
+                mirror = false;                   // Single weapon (not mirrored to both sides)
+                x = 0f;                           // Centered horizontally on unit
+                y = 7f;                           // Positioned forward on unit
+                shadow = 50f;                     // Shadow size
 
+                // Weapon visual parts - animated components
                 parts.addAll(
 
+                        // Barrel recoil animation
                         new RegionPart("-suspension-barrel") {{
 
-                            progress = PartProgress.recoil;
-                            mirror = false;
-                            under = true;
-                            moveY = -5f;
+                            progress = PartProgress.recoil;  // Animates with weapon recoil
+                            mirror = false;                   // Single barrel
+                            under = true;                     // Draw below weapon
+                            moveY = -5f;                      // Moves back 5 units on fire
 
                         }}
                 );
 
-                bullet = new BasicBulletType(25f, 420f) {{
+                // Bullet configuration
+                bullet = new BasicBulletType(25f, 420f) {{  // Speed: 25, Damage: 420
 
                     sprite = "missile-large";
                     width = 12f;
                     height = 20f;
-                    lifetime = 22f;
-                    hitSize = 6f;
+                    lifetime = 22f;                  // Lives for 22 ticks (travels 550 units at 25 speed)
+                    hitSize = 6f;                    // Collision radius
 
                     smokeEffect = Fx.shootSmokeTitan;
-                    pierceCap = 4;
+                    pierceCap = 4;                   // Can pierce up to 4 targets
                     pierce = true;
-                    pierceBuilding = true;
+                    pierceBuilding = true;           // Can penetrate buildings
                     hitColor = backColor = trailColor = Color.valueOf("feb380");
                     frontColor = Color.white;
                     trailWidth = 4f;
                     trailLength = 9;
                     hitEffect = despawnEffect = Fx.massiveExplosion;
                     despawnSound = DoodleSounds.dullExplosion;
-                    ejectEffect = Fx.casing4;
+                    ejectEffect = Fx.casing4;        // Shell casing ejection
 
+                    // Custom muzzle flash effect
                     shootEffect = new ExplosionEffect() {{
 
                         lifetime = 40f;
@@ -106,9 +140,11 @@ public class DoodleUnits {
 
                     }};
 
+                    // Splash damage on impact
                     splashDamage = 65f;
                     splashDamageRadius = 70f;
 
+                    // Custom impact/despawn effect
                     despawnEffect = new ExplosionEffect() {{
 
                         lifetime = 50f;
@@ -132,57 +168,60 @@ public class DoodleUnits {
 
         }};
 
+        // === UNIT 103 HEAVY TANK ===
+        // Heavy tank with fixed main gun, rapid-fire secondary weapons, and anti-air capability
         unit103 = new DoodleUnitType("103") {{
 
             alwaysUnlocked = true;
 
+            // Unit implementation classes
             constructor = TankUnit::create;
             aiController = GroundAI::new;
 
-            omniMovement = true;
+            omniMovement = true;                 // Can strafe sideways (different from CAX)
 
-            //attributes
+            // === Physical attributes ===
             hitSize = 50f;
             treadPullOffset = 1;
-            speed = 0.5f;
-            health = 22000;
-            armor = 15f;
+            speed = 0.5f;                        // Slower than CAX due to heavier armor
+            health = 22000;                      // More health than CAX
+            armor = 15f;                         // More armor than CAX
             crushDamage = 25f / 5f;
-            rotateSpeed = 2f;
-            targetAir = true;
-            faceTarget = true;
+            rotateSpeed = 2f;                    // Faster rotation than CAX
+            targetAir = true;                    // Can attack air units (has AA weapon)
+            faceTarget = true;                   // Entire unit rotates to face target
 
-            //tread trail effect
+            // Tread trail effect
             treadRects = new Rect[]{new Rect(0, 0, 140, 150)};
 
-            //main weapon
+            // === PRIMARY WEAPON - Large Fixed Cannon ===
             weapons.add(new Weapon("dt-103-weapon") {{
 
                 shootSound = DoodleSounds.largeCannon;
                 layerOffset = 0.1f;
-                reload = 75f;
+                reload = 75f;                     // Faster reload than CAX
                 shootY = 33f;
                 shake = 5f;
-                recoil = 0f;
-                rotate = false;
+                recoil = 0f;                      // No visual recoil
+                rotate = false;                   // Fixed gun - doesn't rotate independently
                 rotateSpeed = 0f;
                 mirror = false;
                 x = 0f;
                 y = 35f;
 
-                bullet = new BasicBulletType(20f, 220f) {{
+                bullet = new BasicBulletType(20f, 220f) {{  // Speed: 20, Damage: 220
 
                     sprite = "missile-large";
                     width = 15f;
                     height = 18f;
                     lifetime = 17f;
                     hitSize = 6f;
-                    knockback = 1f;
+                    knockback = 1f;               // Pushes targets back on hit
 
                     smokeEffect = Fx.shootSmokeTitan;
-                    pierceCap = 2;
+                    pierceCap = 2;                // Can pierce 2 targets
                     pierce = true;
-                    pierceBuilding = false;
+                    pierceBuilding = false;       // Cannot penetrate buildings
                     hitColor = backColor = trailColor = Color.valueOf("feb380");
                     frontColor = Color.white;
                     trailWidth = 4f;
@@ -206,8 +245,9 @@ public class DoodleUnits {
                         sparkStroke = 3f;
                     }};
 
+                    // Large splash damage - wider radius than CAX
                     splashDamage = 50f;
-                    splashDamageRadius = 185f;
+                    splashDamageRadius = 185f;    // Massive splash radius
 
                     despawnEffect = new ExplosionEffect() {{
 
@@ -230,25 +270,26 @@ public class DoodleUnits {
 
             }});
 
-            //secondary weapon
+            // === SECONDARY WEAPON - Rapid-Fire Hull Gun ===
+            // Fixed forward-facing rapid fire weapon for suppression
             weapons.add(new Weapon("dt-103-weapon-1") {{
 
                 shootSound = DoodleSounds.pew;
                 layerOffset = 0.1f;
-                reload = 3.5f;
-                inaccuracy = 1;
+                reload = 3.5f;                    // Very fast reload
+                inaccuracy = 1;                   // Slight spread
                 shootY = 10f;
                 shake = 0f;
                 recoil = 0f;
-                rotate = false;
+                rotate = false;                   // Fixed forward
                 rotateSpeed = 0f;
                 mirror = false;
-                x = -18f;
+                x = -18f;                         // Offset to left side
                 y = 36f;
                 shootCone = 2f;
-                shoot = new ShootAlternate(4f);
+                shoot = new ShootAlternate(4f);   // Alternates left/right by 4 units
 
-                bullet = new BasicBulletType(4.5f, 25) {{
+                bullet = new BasicBulletType(4.5f, 25) {{  // Speed: 4.5, Damage: 25
 
                     width = 6.5f;
                     height = 11f;
@@ -263,33 +304,35 @@ public class DoodleUnits {
 
             }});
 
-            //third weapon
+            // === TERTIARY WEAPON - Anti-Air Turret ===
+            // Rotating rear turret for shooting down air units
             weapons.add(new Weapon("dt-103-weapon-2") {{
 
                 shootSound = DoodleSounds.shootSnap;
                 layerOffset = 0.1f;
-                reload = 3f;
+                reload = 3f;                      // Fast fire rate
                 shootY = 15f;
                 shake = 0f;
                 recoil = 1f;
-                rotate = true;
-                rotateSpeed = 15f;
+                rotate = true;                    // Rotates independently
+                rotateSpeed = 15f;                // Very fast rotation for tracking air
                 mirror = false;
                 x = 0f;
-                y = -10f;
-                inaccuracy = 17f;
-                shootCone = 35f;
-                controllable = false;
-                autoTarget = true;
+                y = -10f;                         // Positioned at rear of unit
+                inaccuracy = 17f;                 // Spread for flak effect
+                shootCone = 35f;                  // Wide firing cone
+                controllable = false;              // AI-controlled only
+                autoTarget = true;                // Automatically acquires targets
 
+                // Anti-air flak bullet with splash damage
                 bullet = new BasicBulletType(4.2f, 10) {{
-                    lifetime = 60f;
+                    lifetime = 60f;               // Long lifetime for AA coverage
                     shootEffect = Fx.shootSmall;
                     width = 6f;
                     height = 8f;
                     hitEffect = Fx.flakExplosion;
-                    splashDamage = 30f * 1.5f;
-                    splashDamageRadius = 20f;
+                    splashDamage = 30f * 1.5f;    // 45 splash damage
+                    splashDamageRadius = 20f;     // Small explosion radius
                 }};
 
             }});
