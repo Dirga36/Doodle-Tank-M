@@ -43,14 +43,14 @@ public class DoodleBlocks {
             
             // Building requirements using static ItemStack.with() helper
             requirements(Category.units, with(
-                DoodleItems.paper, 4000,      // Primary material
-                Items.silicon, 3000,           // Electronics
-                DoodleItems.eraser, 1200,      // Correction material
-                DoodleItems.pen, 1000,         // Advanced writing tool
-                DoodleItems.ruler, 1000,       // Measuring tool
-                Items.plastanium, 600,         // Armor plating
-                DoodleItems.pencil, 600,       // Basic writing tool
-                Items.surgeAlloy, 800          // Advanced components
+                DoodleItems.paper, 4000,
+                Items.silicon, 3000,
+                DoodleItems.eraser, 1200,
+                DoodleItems.pen, 1000,
+                DoodleItems.ruler, 1000,
+                Items.plastanium, 600,
+                DoodleItems.pencil, 600,
+                Items.surgeAlloy, 800
             ));
             
             // Resource consumption
@@ -64,7 +64,7 @@ public class DoodleBlocks {
             // Unit production plans - defines which units can be built
             // Each plan specifies: unit type, construction time (ticks), and item costs
             plans = Seq.with(
-                    // CAX tank - 35 minutes (60 ticks/sec * 35 sec)
+                    // CAX tank - 35 minutes construction time
                     new UnitPlan(DoodleUnits.cax, 60f * 35f, with(
                         Items.silicon, 900,
                         Items.plastanium, 700,

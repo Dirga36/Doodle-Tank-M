@@ -31,7 +31,6 @@ public class DoodleSounds {
     public static Sound pew = new Sound();
     
     /** Shoot snap sound - quick firing sound */
-    /** Shoot snap sound - quick firing sound */
     public static Sound shootSnap = new Sound();
     
     /**

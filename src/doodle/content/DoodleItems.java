@@ -15,20 +15,12 @@ import mindustry.type.Item;
  */
 public class DoodleItems {
     
-    /** White paper item - primary building material, highly flammable */
-    public static Item paper;
-    
-    /** Yellow pencil item - basic writing tool, slightly flammable */
-    public static Item pencil;
-    
-    /** White eraser item - correction material, non-flammable */
-    public static Item eraser;
-    
-    /** Orange ruler item - measuring tool, moderately flammable */
-    public static Item ruler;
-    
-    /** Blue pen item - advanced writing tool, non-flammable */
-    public static Item pen;
+    public static Item
+    paper,
+    pencil,
+    eraser,
+    ruler,
+    pen;
 
     /**
      * Initializes all custom items with their properties.
@@ -38,30 +30,25 @@ public class DoodleItems {
      */
     public static void load() {
 
-        // White paper - highly flammable due to material properties
         paper = new Item("paper", Color.valueOf("#ebeef5")) {{
             alwaysUnlocked = true;
-            flammability = 0.7f;  // 70% flammable - paper burns easily
+            flammability = 0.7f;  // 70% flammable
         }};
         
-        // Yellow pencil - contains wood, moderately flammable
         pencil = new Item("pencil", Color.valueOf("#ffffa3")) {{
             alwaysUnlocked = true;
             flammability = 0.2f;  // 20% flammable
         }};
         
-        // White eraser - rubber material, non-flammable
         eraser = new Item("eraser", Color.valueOf("#ebeef5")) {{
             alwaysUnlocked = true;
         }};
         
-        // Orange ruler - wood or plastic, moderately flammable
         ruler = new Item("ruler", Color.valueOf("#ffd37f")) {{
             alwaysUnlocked = true;
             flammability = 0.4f;  // 40% flammable
        }};
        
-        // Blue pen - plastic body, non-flammable
         pen = new Item("pen", Color.valueOf("#a4b8fa")) {{
             alwaysUnlocked = true;
         }};
