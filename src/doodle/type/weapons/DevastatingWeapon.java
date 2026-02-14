@@ -1,9 +1,11 @@
 package doodle.type.weapons;
 
+import arc.audio.Sound;
 import arc.math.Angles;
 import arc.math.Mathf;
 import arc.util.Time;
 import arc.util.Tmp;
+import doodle.content.DoodleSounds;
 import mindustry.ai.types.MissileAI;
 import mindustry.content.Bullets;
 import mindustry.entities.Effect;
@@ -30,6 +32,31 @@ public class DevastatingWeapon extends Weapon {
      * How many normal shots before a devastating strike. Default is 3 (so 4th shot is devastating).
      */
     public int shotsBeforeDevastating = 3;
+    /**
+     * Sound for normal shots. If not set, uses the weapon's shootSound.
+     */
+    public Sound normalShootSound = DoodleSounds.pew;
+    /**
+     * Sound for devastating strikes. If not set, uses the weapon's shootSound.
+     */
+    public Sound devastatingShootSound = DoodleSounds.pew;
+    /**
+     * Recoil multiplier for normal shots. Default is 1.0 (uses weapon's recoil).
+     */
+    public float normalRecoilMult = 1f;
+    /**
+     * Recoil multiplier for devastating strikes. Default is 1.0 (uses weapon's recoil).
+     */
+    public float devastatingRecoilMult = 1f;
+
+    /**
+     * Shake multiplier for normal shots. Default is 1.0 (uses weapon's shake).
+     */
+    public float normalShakeMult = 1f;
+    /**
+     * Shake multiplier for devastating strikes. Default is 1.0 (uses weapon's shake).
+     */
+    public float devastatingShakeMult = 1f;
 
     public DevastatingWeapon(String name) {
         super(name);
@@ -71,7 +98,7 @@ public class DevastatingWeapon extends Weapon {
     }
 
     /**
-     * Modified bullet method that uses the appropriate bullet type.
+     * Modified bullet method that uses the appropriate bullet type, sound, and recoil.
      */
     protected void bulletWithType(Unit unit, WeaponMount mount, float xOffset, float yOffset, float angleOffset, Mover mover) {
         if (!unit.isAdded()) return;
@@ -80,6 +107,7 @@ public class DevastatingWeapon extends Weapon {
 
         //Determine which bullet to use
         BulletType currentBullet = getCurrentBullet(mount);
+        boolean isDevastating = currentBullet == devastatingBullet;
 
         float
                 xSpread = Mathf.range(xRand),
@@ -97,7 +125,11 @@ public class DevastatingWeapon extends Weapon {
         handleBullet(unit, mount, mount.bullet);
 
         if (!continuous) {
-            shootSound.at(bulletX, bulletY, Mathf.random(soundPitchMin, soundPitchMax));
+            //Use appropriate sound for this bullet type
+            Sound soundToUse = isDevastating && devastatingShootSound != DoodleSounds.pew ? devastatingShootSound :
+                              !isDevastating && normalShootSound != DoodleSounds.pew ? normalShootSound :
+                              shootSound;
+            soundToUse.at(bulletX, bulletY, Mathf.random(soundPitchMin, soundPitchMax));
         }
 
         ejectEffect.at(mountX, mountY, angle * Mathf.sign(this.x));
@@ -106,11 +138,20 @@ public class DevastatingWeapon extends Weapon {
 
         unit.vel.add(Tmp.v1.trns(shootAngle + 180f, currentBullet.recoil));
         Effect.shake(shake, shake, bulletX, bulletY);
-        mount.recoil = 1f;
+        
+        //Apply appropriate recoil multiplier
+        float recoilMult = isDevastating ? devastatingRecoilMult : normalRecoilMult;
+        mount.recoil = recoilMult;
+        
         if (recoils > 0) {
             if (mount.recoils == null) mount.recoils = new float[recoils];
-            mount.recoils[mount.barrelCounter % recoils] = 1f;
+            mount.recoils[mount.barrelCounter % recoils] = recoilMult;
         }
+
+        //Apply appropriate shake multiplier
+        float shakeMult = isDevastating ? devastatingShakeMult : normalShakeMult;
+        Effect.shake(shake * shakeMult, shake * shakeMult, bulletX, bulletY);
+
         mount.heat = 1f;
     }
 

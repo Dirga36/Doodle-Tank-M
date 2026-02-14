@@ -69,8 +69,8 @@ public class DoodleUnits {
             // Team buff ability - applies overclock to nearby friendly units
             abilities.add(new StatusFieldAbility(
                     StatusEffects.overclock,         // Status effect to apply
-                    60f * 15,                         // Duration: 15 seconds
-                    60f * 20f,                        // Reload: 20 seconds
+                    60f * 15,                        // Duration: 15 seconds
+                    60f * 20f,                       // Reload: 20 seconds
                     150f                             // Range: 150 world units
             ));
 
@@ -80,12 +80,12 @@ public class DoodleUnits {
             // === MAIN WEAPON - Medium Cannon ===
             weapons.add(new DevastatingWeapon("dt-cax-weapon") {{
 
-                shootSound = DoodleSounds.mediumCannon;
+                //shootSound = DoodleSounds.mediumCannon;
+                //recoil = 1f;                    // Visual recoil distance
+                shake = 1f;                       // Screen shake intensity on fire
                 layerOffset = 0.1f;               // Draw slightly above unit
                 reload = 100f;                    // Reload time in ticks (60 ticks = 1 second)
                 shootY = 63f;                     // Bullet spawn distance from weapon center
-                shake = 5f;                       // Screen shake intensity on fire
-                recoil = 1f;                      // Visual recoil distance
                 rotate = true;                    // Turret can rotate independently
                 rotateSpeed = 1.2f;               // Turret rotation speed
                 mirror = false;                   // Single weapon (not mirrored to both sides)
@@ -183,6 +183,18 @@ public class DoodleUnits {
                     damage = 1250;
                     pierceDamageFactor = 0.5f;
                 }};
+
+                //Separate sounds for each attack type
+                normalShootSound = DoodleSounds.mediumCannon;      // Normal attacks use medium cannon
+                devastatingShootSound = DoodleSounds.largeCannon;      // Devastating strikes sound like railgun
+                
+                //Separate recoil for each attack type
+                normalRecoilMult = 0.8f;                     // Normal attacks: less recoil
+                devastatingRecoilMult = 2.5f;                // Devastating strikes: heavy recoil
+                
+                //Separate shake for each attack type
+                normalShakeMult = 5f;                      // Normal attacks: less shake
+                devastatingShakeMult = 10f;                // Devastating strikes: heavy shake
 
                 //3 normal attacks before devastating
                 shotsBeforeDevastating = 3;
