@@ -16,7 +16,7 @@ import mindustry.mod.Mod;
  *   Items - custom items used in factory requirements
  *   Units - tank units that reference sounds and items
  *   Blocks - factories that create units and consume items
- * </ol>
+ *
  * 
  * @author Dirge
  * @version 1.0
