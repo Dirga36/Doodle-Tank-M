@@ -62,10 +62,6 @@ public class DevastatingWeapon extends Weapon {
         super(name);
     }
 
-    public DevastatingWeapon() {
-        super();
-    }
-
     @Override
     protected void shoot(Unit unit, WeaponMount mount, float shootX, float shootY, float rotation) {
         unit.apply(shootStatus, shootStatusDuration);
@@ -137,7 +133,6 @@ public class DevastatingWeapon extends Weapon {
         currentBullet.smokeEffect.at(bulletX, bulletY, angle, currentBullet.hitColor, unit);
 
         unit.vel.add(Tmp.v1.trns(shootAngle + 180f, currentBullet.recoil));
-        Effect.shake(shake, shake, bulletX, bulletY);
         
         //Apply appropriate recoil multiplier
         float recoilMult = isDevastating ? devastatingRecoilMult : normalRecoilMult;
