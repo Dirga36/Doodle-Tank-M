@@ -3,13 +3,11 @@ package doodle.content;
 import arc.graphics.Color;
 import arc.math.geom.Rect;
 import doodle.type.unit.DoodleUnitType;
-import doodle.type.weapons.DevastatingWeapon;
 import mindustry.ai.types.GroundAI;
 import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
 import mindustry.entities.abilities.StatusFieldAbility;
 import mindustry.entities.bullet.BasicBulletType;
-import mindustry.entities.bullet.RailBulletType;
 import mindustry.entities.effect.ExplosionEffect;
 import mindustry.entities.part.RegionPart;
 import mindustry.entities.pattern.ShootAlternate;
@@ -27,15 +25,11 @@ import mindustry.type.Weapon;
  * uses short names ("cax") to avoid collisions with base game assets.
  */
 public class DoodleUnits {
-
-    /**
-     * CAX medium tank - rotating turret with powerful cannon and overclock aura
-     */
+    
+    /** CAX medium tank - rotating turret with powerful cannon and overclock aura */
     public static DoodleUnitType cax;
-
-    /**
-     * Unit 103 heavy tank - fixed gun with secondary weapons and anti-air capability
-     */
+    
+    /** Unit 103 heavy tank - fixed gun with secondary weapons and anti-air capability */
     public static DoodleUnitType unit103;
 
     /**
@@ -65,27 +59,27 @@ public class DoodleUnits {
             crushDamage = 25f / 5f;              // Damage dealt when crushing units (5 per tick)
             rotateSpeed = 1f;                    // Rotation speed multiplier
             targetAir = false;                   // Cannot attack air units
-
+            
             // Team buff ability - applies overclock to nearby friendly units
             abilities.add(new StatusFieldAbility(
-                    StatusEffects.overclock,         // Status effect to apply
-                    60f * 15,                        // Duration: 15 seconds
-                    60f * 20f,                       // Reload: 20 seconds
-                    150f                             // Range: 150 world units
+                StatusEffects.overclock,         // Status effect to apply
+                60f * 6,                         // Duration: 6 seconds
+                60f * 6f,                        // Reload: 6 seconds
+                150f                             // Range: 150 world units
             ));
 
             // Tread trail effect - defines areas where tread marks appear
             treadRects = new Rect[]{new Rect(0, 0, 140, 150)};
 
             // === MAIN WEAPON - Medium Cannon ===
-            weapons.add(new DevastatingWeapon("dt-cax-weapon") {{
+            weapons.add(new Weapon("dt-cax-weapon") {{
 
-                //shootSound = DoodleSounds.mediumCannon;
-                //recoil = 1f;                    // Visual recoil distance
-                shake = 1f;                       // Screen shake intensity on fire
+                shootSound = DoodleSounds.mediumCannon;
                 layerOffset = 0.1f;               // Draw slightly above unit
                 reload = 100f;                    // Reload time in ticks (60 ticks = 1 second)
-                shootY = 63f;                     // Bullet spawn distance from weapon center
+                shootY = 60f;                     // Bullet spawn distance from weapon center
+                shake = 5f;                       // Screen shake intensity on fire
+                recoil = 1f;                      // Visual recoil distance
                 rotate = true;                    // Turret can rotate independently
                 rotateSpeed = 1.2f;               // Turret rotation speed
                 mirror = false;                   // Single weapon (not mirrored to both sides)
@@ -108,8 +102,7 @@ public class DoodleUnits {
                 );
 
                 // Bullet configuration
-                //Normal attack (attacks 1-3)
-                normalBullet = new BasicBulletType(25f, 420f) {{  // Speed: 25, Damage: 420
+                bullet = new BasicBulletType(25f, 420f) {{  // Speed: 25, Damage: 420
 
                     sprite = "missile-large";
                     width = 12f;
@@ -121,8 +114,8 @@ public class DoodleUnits {
                     pierceCap = 4;                   // Can pierce up to 4 targets
                     pierce = true;
                     pierceBuilding = true;           // Can penetrate buildings
-                    hitColor = backColor = trailColor = Color.valueOf("feb380");
-                    frontColor = Color.white;
+                    hitColor = backColor = trailColor = Color.valueOf("#FFF");
+                    frontColor = Color.black;
                     trailWidth = 4f;
                     trailLength = 9;
                     hitEffect = despawnEffect = Fx.massiveExplosion;
@@ -171,34 +164,6 @@ public class DoodleUnits {
 
                 }};
 
-                //Devastating strike (4th attack) - similar to Omura's
-                devastatingBullet = new RailBulletType() {{
-                    pierceEffect = Fx.railHit;
-                    pointEffect = Fx.railTrail;
-                    shootEffect = Fx.instShoot;
-                    hitEffect = Fx.instHit;
-                    smokeEffect = Fx.smokeCloud;
-                    length = 500;
-                    pointEffectSpace = 60f;
-                    damage = 1250;
-                    pierceDamageFactor = 0.5f;
-                }};
-
-                //Separate sounds for each attack type
-                normalShootSound = DoodleSounds.mediumCannon;      // Normal attacks use medium cannon
-                devastatingShootSound = DoodleSounds.largeCannon;      // Devastating strikes sound like railgun
-                
-                //Separate recoil for each attack type
-                normalRecoilMult = 0.8f;                     // Normal attacks: less recoil
-                devastatingRecoilMult = 2.5f;                // Devastating strikes: heavy recoil
-                
-                //Separate shake for each attack type
-                normalShakeMult = 5f;                      // Normal attacks: less shake
-                devastatingShakeMult = 10f;                // Devastating strikes: heavy shake
-
-                //3 normal attacks before devastating
-                shotsBeforeDevastating = 3;
-
             }});
 
         }};
@@ -218,7 +183,7 @@ public class DoodleUnits {
             // === Physical attributes ===
             hitSize = 50f;
             treadPullOffset = 1;
-            speed = 0.67f;                        // Slower than CAX due to heavier armor
+            speed = 0.5f;                        // Slower than CAX due to heavier armor
             health = 22000;                      // More health than CAX
             armor = 15f;                         // More armor than CAX
             crushDamage = 25f / 5f;
@@ -235,7 +200,7 @@ public class DoodleUnits {
                 shootSound = DoodleSounds.largeCannon;
                 layerOffset = 0.1f;
                 reload = 75f;                     // Faster reload than CAX
-                shootY = 36f;
+                shootY = 33f;
                 shake = 5f;
                 recoil = 0f;                      // No visual recoil
                 rotate = false;                   // Fixed gun - doesn't rotate independently
@@ -257,8 +222,8 @@ public class DoodleUnits {
                     pierceCap = 2;                // Can pierce 2 targets
                     pierce = true;
                     pierceBuilding = false;       // Cannot penetrate buildings
-                    hitColor = backColor = trailColor = Color.valueOf("feb380");
-                    frontColor = Color.white;
+                    hitColor = backColor = trailColor = Color.valueOf("#FFF");
+                    frontColor = Color.black;
                     trailWidth = 4f;
                     trailLength = 9;
                     hitEffect = despawnEffect = Fx.titanExplosion;
@@ -329,8 +294,8 @@ public class DoodleUnits {
                     width = 6.5f;
                     height = 11f;
                     shootEffect = Fx.sparkShoot;
-                    hitColor = backColor = trailColor = Color.valueOf("feb380");
-                    frontColor = Color.white;
+                    hitColor = backColor = trailColor = Color.valueOf("#FFF");
+                    frontColor = Color.black;
                     trailWidth = 1.5f;
                     trailLength = 4;
                     hitEffect = despawnEffect = Fx.hitBulletColor;
