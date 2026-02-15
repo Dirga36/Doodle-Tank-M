@@ -75,7 +75,7 @@ public class DoodleUnits {
             weapons.add(new Weapon("dt-cax-weapon") {{
 
                 shootSound = DoodleSounds.mediumCannon;
-                layerOffset = 0.1f;               // Draw slightly above unit
+                layerOffset = 0.1f;              // Draw slightly above unit
                 reload = 100f;                    // Reload time in ticks (60 ticks = 1 second)
                 shootY = 60f;                     // Bullet spawn distance from weapon center
                 shake = 5f;                       // Screen shake intensity on fire
@@ -93,7 +93,7 @@ public class DoodleUnits {
                         // Barrel recoil animation
                         new RegionPart("-suspension-barrel") {{
 
-                            progress = PartProgress.recoil;   // Animates with weapon recoil
+                            progress = PartProgress.recoil;  // Animates with weapon recoil
                             mirror = false;                   // Single barrel
                             under = true;                     // Draw below weapon
                             moveY = -5f;                      // Moves back 5 units on fire
@@ -114,8 +114,8 @@ public class DoodleUnits {
                     pierceCap = 4;                   // Can pierce up to 4 targets
                     pierce = true;
                     pierceBuilding = true;           // Can penetrate buildings
-                    hitColor = backColor = trailColor = Color.valueOf("#FFF");
-                    frontColor = Color.black;
+                    hitColor = backColor = trailColor = Color.valueOf("feb380");
+                    frontColor = Color.white;
                     trailWidth = 4f;
                     trailLength = 9;
                     hitEffect = despawnEffect = Fx.massiveExplosion;
@@ -216,14 +216,14 @@ public class DoodleUnits {
                     height = 18f;
                     lifetime = 17f;
                     hitSize = 6f;
-                    knockback = 1f;               // Pushes targets back on hit
+                    knockback = 10f;               // Pushes targets back on hit
 
-                    smokeEffect = Fx.shootSmokeTitan;
+                    smokeEffect = Fx.smokeCloud;
                     pierceCap = 2;                // Can pierce 2 targets
                     pierce = true;
                     pierceBuilding = false;       // Cannot penetrate buildings
-                    hitColor = backColor = trailColor = Color.valueOf("#FFF");
-                    frontColor = Color.black;
+                    hitColor = backColor = trailColor = Color.valueOf("feb380");
+                    frontColor = Color.white;
                     trailWidth = 4f;
                     trailLength = 9;
                     hitEffect = despawnEffect = Fx.titanExplosion;
@@ -294,8 +294,8 @@ public class DoodleUnits {
                     width = 6.5f;
                     height = 11f;
                     shootEffect = Fx.sparkShoot;
-                    hitColor = backColor = trailColor = Color.valueOf("#FFF");
-                    frontColor = Color.black;
+                    hitColor = backColor = trailColor = Color.valueOf("feb380");
+                    frontColor = Color.white;
                     trailWidth = 1.5f;
                     trailLength = 4;
                     hitEffect = despawnEffect = Fx.hitBulletColor;
@@ -321,7 +321,7 @@ public class DoodleUnits {
                 y = -10f;                         // Positioned at rear of unit
                 inaccuracy = 17f;                 // Spread for flak effect
                 shootCone = 35f;                  // Wide firing cone
-                controllable = false;             // AI-controlled only
+                controllable = false;              // AI-controlled only
                 autoTarget = true;                // Automatically acquires targets
 
                 // Anti-air flak bullet with splash damage
