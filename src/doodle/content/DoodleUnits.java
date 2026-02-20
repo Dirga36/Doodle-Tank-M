@@ -14,6 +14,7 @@ import mindustry.entities.part.RegionPart;
 import mindustry.entities.pattern.ShootAlternate;
 import mindustry.gen.TankUnit;
 import mindustry.type.Weapon;
+import mindustry.world.meta.BlockFlag;
 
 /**
  * Contains all custom tank units used in the Doodle Tank mod.
@@ -54,6 +55,13 @@ public class DoodleUnits {
             // Unit implementation classes
             constructor = TankUnit::create;      // Tank unit entity type
             aiController = GroundAI::new;        // Ground-based AI behavior
+            targetFlags = new BlockFlag[]{
+                    BlockFlag.reactor,
+                    BlockFlag.battery,
+                    BlockFlag.factory,
+                    BlockFlag.core,
+                    null
+            };
 
             // === Physical attributes ===
             hitSize = 60f;                       // Collision radius in world units
@@ -132,6 +140,12 @@ public class DoodleUnits {
             // Unit implementation classes
             constructor = TankUnit::create;
             aiController = GroundAI::new;
+            targetFlags = new BlockFlag[]{
+                    //BlockFlag.shield,
+                    BlockFlag.repair,
+                    BlockFlag.turret,
+                    null
+            };
 
             omniMovement = true;                 // Can strafe sideways (different from CAX)
 

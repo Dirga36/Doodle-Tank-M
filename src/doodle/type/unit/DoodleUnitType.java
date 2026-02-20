@@ -40,7 +40,7 @@ public class DoodleUnitType extends UnitType {
         ammoType = new ItemAmmoType(Items.graphite);  // Uses graphite as ammo
         
         // Tank movement characteristics
-        squareShape = true;         // Square collision hitbox for tank shape
+        squareShape = true;           // Square collision hitbox for tank shape
         omniMovement = false;         // Cannot strafe - must rotate to turn
         rotateMoveFirst = true;       // Rotates to face direction before moving
         envDisabled = Env.none;       // Can operate in all normal environments
