@@ -56,7 +56,7 @@ public class DoodleUnits {
             aiController = GroundAI::new;        // Ground-based AI behavior
 
             // === Physical attributes ===
-            hitSize = 50f;                       // Collision radius in world units
+            hitSize = 60f;                       // Collision radius in world units
             treadPullOffset = 1;                 // Tread animation offset
             speed = 0.7f;                        // Movement speed
             health = 17000;                      // Hit points
@@ -68,8 +68,8 @@ public class DoodleUnits {
             // Team buff ability - applies overclock to nearby friendly units
             abilities.add(new StatusFieldAbility(
                     StatusEffects.overclock,         // Status effect to apply
-                    60f * 6,                         // Duration: 6 seconds
-                    60f * 6f,                        // Reload: 6 seconds
+                    60f * 15,                        // Duration: 6 seconds
+                    60f * 20f,                       // Reload: 6 seconds
                     150f                             // Range: 150 world units
             ));
 
@@ -136,7 +136,7 @@ public class DoodleUnits {
             omniMovement = true;                 // Can strafe sideways (different from CAX)
 
             // === Physical attributes ===
-            hitSize = 50f;
+            hitSize = 65f;
             treadPullOffset = 1;
             speed = 0.5f;                        // Slower than CAX due to heavier armor
             health = 22000;                      // More health than CAX
