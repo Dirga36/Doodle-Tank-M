@@ -8,6 +8,7 @@ import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
 import mindustry.entities.abilities.StatusFieldAbility;
 import mindustry.entities.bullet.BasicBulletType;
+import mindustry.entities.bullet.RailBulletType;
 import mindustry.entities.effect.ExplosionEffect;
 import mindustry.entities.part.RegionPart;
 import mindustry.entities.pattern.ShootAlternate;
@@ -16,25 +17,29 @@ import mindustry.type.Weapon;
 
 /**
  * Contains all custom tank units used in the Doodle Tank mod.
- * 
+ * --
  * Units must be loaded after items and sounds (which they reference) but before
  * blocks (which reference units in their production plans). Each unit extends
  * {@link DoodleUnitType} for shared tank characteristics.
- * 
+ * --
  * Asset naming: Sprites use "dt-" prefix (e.g., "dt-cax.png") while code
  * uses short names ("cax") to avoid collisions with base game assets.
  */
 public class DoodleUnits {
-    
-    /** CAX medium tank - rotating turret with powerful cannon and overclock aura */
+
+    /**
+     * CAX medium tank - rotating turret with powerful cannon and overclock aura
+     */
     public static DoodleUnitType cax;
-    
-    /** Unit 103 heavy tank - fixed gun with secondary weapons and anti-air capability */
+
+    /**
+     * Unit 103 heavy tank - fixed gun with secondary weapons and anti-air capability
+     */
     public static DoodleUnitType unit103;
 
     /**
      * Initializes all tank units with their configurations.
-     * 
+     * <p>
      * Uses double-brace initialization pattern for clean inline configuration
      * of unit attributes, weapons, abilities, and visual effects.
      */
@@ -59,13 +64,13 @@ public class DoodleUnits {
             crushDamage = 25f / 5f;              // Damage dealt when crushing units (5 per tick)
             rotateSpeed = 1f;                    // Rotation speed multiplier
             targetAir = false;                   // Cannot attack air units
-            
+
             // Team buff ability - applies overclock to nearby friendly units
             abilities.add(new StatusFieldAbility(
-                StatusEffects.overclock,         // Status effect to apply
-                60f * 6,                         // Duration: 6 seconds
-                60f * 6f,                        // Reload: 6 seconds
-                150f                             // Range: 150 world units
+                    StatusEffects.overclock,         // Status effect to apply
+                    60f * 6,                         // Duration: 6 seconds
+                    60f * 6f,                        // Reload: 6 seconds
+                    150f                             // Range: 150 world units
             ));
 
             // Tread trail effect - defines areas where tread marks appear
@@ -75,11 +80,11 @@ public class DoodleUnits {
             weapons.add(new Weapon("dt-cax-weapon") {{
 
                 shootSound = DoodleSounds.mediumCannon;
-                layerOffset = 0.1f;              // Draw slightly above unit
+                layerOffset = 0.1f;               // Draw slightly above unit
                 reload = 100f;                    // Reload time in ticks (60 ticks = 1 second)
                 shootY = 60f;                     // Bullet spawn distance from weapon center
                 shake = 5f;                       // Screen shake intensity on fire
-                recoil = 1f;                      // Visual recoil distance
+                recoil = 3f;                      // Visual recoil distance
                 rotate = true;                    // Turret can rotate independently
                 rotateSpeed = 1.2f;               // Turret rotation speed
                 mirror = false;                   // Single weapon (not mirrored to both sides)
@@ -93,7 +98,7 @@ public class DoodleUnits {
                         // Barrel recoil animation
                         new RegionPart("-suspension-barrel") {{
 
-                            progress = PartProgress.recoil;  // Animates with weapon recoil
+                            progress = PartProgress.recoil;   // Animates with weapon recoil
                             mirror = false;                   // Single barrel
                             under = true;                     // Draw below weapon
                             moveY = -5f;                      // Moves back 5 units on fire
@@ -102,66 +107,16 @@ public class DoodleUnits {
                 );
 
                 // Bullet configuration
-                bullet = new BasicBulletType(25f, 420f) {{  // Speed: 25, Damage: 420
-
-                    sprite = "missile-large";
-                    width = 12f;
-                    height = 20f;
-                    lifetime = 22f;                  // Lives for 22 ticks (travels 550 units at 25 speed)
-                    hitSize = 6f;                    // Collision radius
-
-                    smokeEffect = Fx.shootSmokeTitan;
-                    pierceCap = 4;                   // Can pierce up to 4 targets
-                    pierce = true;
-                    pierceBuilding = true;           // Can penetrate buildings
-                    hitColor = backColor = trailColor = Color.valueOf("feb380");
-                    frontColor = Color.white;
-                    trailWidth = 4f;
-                    trailLength = 9;
-                    hitEffect = despawnEffect = Fx.massiveExplosion;
-                    despawnSound = DoodleSounds.dullExplosion;
-                    ejectEffect = Fx.casing4;        // Shell casing ejection
-
-                    // Custom muzzle flash effect
-                    shootEffect = new ExplosionEffect() {{
-
-                        lifetime = 40f;
-                        waveStroke = 4f;
-                        waveColor = sparkColor = trailColor;
-                        waveRad = 15f;
-                        smokeSize = 5f;
-                        smokes = 8;
-                        smokeSizeBase = 0f;
-                        smokeColor = trailColor;
-                        sparks = 8;
-                        sparkRad = 40f;
-                        sparkLen = 4f;
-                        sparkStroke = 3f;
-
-                    }};
-
-                    // Splash damage on impact
-                    splashDamage = 65f;
-                    splashDamageRadius = 70f;
-
-                    // Custom impact/despawn effect
-                    despawnEffect = new ExplosionEffect() {{
-
-                        lifetime = 50f;
-                        waveStroke = 4f;
-                        waveColor = sparkColor = trailColor;
-                        waveRad = 30f;
-                        smokeSize = 7f;
-                        smokes = 6;
-                        smokeSizeBase = 0f;
-                        smokeColor = trailColor;
-                        sparks = 5;
-                        sparkRad = 30f;
-                        sparkLen = 3f;
-                        sparkStroke = 1.5f;
-
-                    }};
-
+                bullet = new RailBulletType() {{
+                    pierceEffect = Fx.railHit;
+                    pointEffect = Fx.railTrail;
+                    shootEffect = Fx.instShoot;
+                    hitEffect = Fx.instHit;
+                    smokeEffect = Fx.smokeCloud;
+                    length = 500;
+                    pointEffectSpace = 60f;
+                    damage = 1250;
+                    pierceDamageFactor = 0.5f;
                 }};
 
             }});
@@ -247,7 +202,7 @@ public class DoodleUnits {
 
                     // Large splash damage - wider radius than CAX
                     splashDamage = 50f;
-                    splashDamageRadius = 185f;    // Massive splash radius
+                    splashDamageRadius = 200f;    // Massive splash radius
 
                     despawnEffect = new ExplosionEffect() {{
 
@@ -321,7 +276,7 @@ public class DoodleUnits {
                 y = -10f;                         // Positioned at rear of unit
                 inaccuracy = 17f;                 // Spread for flak effect
                 shootCone = 35f;                  // Wide firing cone
-                controllable = false;              // AI-controlled only
+                controllable = false;             // AI-controlled only
                 autoTarget = true;                // Automatically acquires targets
 
                 // Anti-air flak bullet with splash damage

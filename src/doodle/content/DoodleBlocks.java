@@ -11,11 +11,11 @@ import static mindustry.type.ItemStack.with;
 
 /**
  * Contains all custom factory blocks used in the Doodle Tank mod.
- * 
+ * --
  * Factory blocks create units and must be loaded after units are initialized to avoid
  * null references in {@link UnitFactory#plans}. Each factory defines which units it can
  * produce along with their construction requirements and time.
- * 
+ * --
  * Critical: This class must be loaded last in {@link doodle.DoodleTankMod#loadContent()}
  * to ensure all referenced units and items already exist.
  */
@@ -23,7 +23,7 @@ public class DoodleBlocks {
     
     /** 
      * Sketch Book factory - produces doodle-style tank units.
-     * 
+     * --
      * A large 9x9 unit factory that consumes oil and power to construct tanks.
      * Can produce both the "cax" and "103" tank units.
      */
@@ -31,9 +31,9 @@ public class DoodleBlocks {
 
     /**
      * Initializes all factory blocks with their properties and unit production plans.
-     * 
+     * --
      * Uses double-brace initialization pattern for inline configuration.
-     * Unit plans reference units from {@link DoodleUnits} which must be pre-loaded.
+     * Unit plans reference units from {@link DoodleUnits} which must be preloaded.
      */
     public static void load() {
 

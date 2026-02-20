@@ -8,11 +8,11 @@ import mindustry.Vars;
 
 /**
  * Contains all custom sound effects used in the Doodle Tank mod.
- * 
+ * --
  * Sounds are loaded from the {@code assets/sounds/} directory and must be loaded
  * before any content (weapons, units) that references them. All sounds are safely
  * loaded with headless server checks to prevent crashes in dedicated server environments.
- * 
+ * --
  * Critical: This class must be loaded first in {@link doodle.DoodleTankMod#loadContent()}
  * so that sound references exist when weapons are initialized.
  */

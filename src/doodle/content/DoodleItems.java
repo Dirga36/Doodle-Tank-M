@@ -5,11 +5,11 @@ import mindustry.type.Item;
 
 /**
  * Contains all custom items used in the Doodle Tank mod.
- * 
+ * --
  * These items represent art supplies and are used as resources for constructing
  * doodle-style tanks. All items are set to {@code alwaysUnlocked = true} for
  * testing and immediate availability.
- * 
+ * --
  * Naming convention: Code uses short names (e.g., "paper") while assets
  * use the "dt-" prefix (e.g., "dt-paper.png") to avoid collisions.
  */
@@ -24,7 +24,7 @@ public class DoodleItems {
 
     /**
      * Initializes all custom items with their properties.
-     * 
+     * --
      * Uses double-brace initialization pattern for clean inline configuration.
      * Each item is configured with appropriate color and flammability values.
      */
