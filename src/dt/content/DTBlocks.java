@@ -71,7 +71,7 @@ public class DTBlocks {
                         DTItems.pen, 600,
                         DTItems.paper, 400,
                         Items.surgeAlloy, 500
-                    )),
+                    ))
             );
             
             fogRadius = 3;  // Reveals 3 tiles of fog of war around the factory
