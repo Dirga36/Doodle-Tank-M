@@ -34,8 +34,8 @@ public class DTSounds {
     public static Sound shootSnap = new Sound();
     
     /**
-     * Loads a sound file from the assets directory.
-     * 
+     * Loads a sound file from the assets' directory.
+     * --
      * Attempts to load an .ogg file first, falling back to .mp3 if not found.
      * Includes error handling and headless server safety checks.
      * 
@@ -66,7 +66,7 @@ public class DTSounds {
 
     /**
      * Loads all custom sound effects.
-     * 
+     * --
      * Sound files are expected to be in {@code assets/sounds/} with exact name matching.
      * For example, "large-cannon" loads "sounds/large-cannon.ogg" or "sounds/large-cannon.mp3".
      */
