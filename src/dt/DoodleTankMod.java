@@ -1,9 +1,9 @@
-package doodle;
+package dt;
 
-import doodle.content.DoodleBlocks;
-import doodle.content.DoodleItems;
-import doodle.content.DoodleSounds;
-import doodle.content.DoodleUnits;
+import dt.content.DTBlocks;
+import dt.content.DTItems;
+import dt.content.DTSounds;
+import dt.content.DTUnitTypes;
 import mindustry.mod.Mod;
 
 /**
@@ -36,16 +36,16 @@ public class DoodleTankMod extends Mod {
     @Override
     public void loadContent() {
         // Load sounds first - weapons will reference these
-        DoodleSounds.load();
+        DTSounds.load();
         
         // Load items - units and blocks will need these
-        DoodleItems.load();
+        DTItems.load();
         
         // Load units - blocks will reference these in build plans
-        DoodleUnits.load();
+        DTUnitTypes.load();
         
         // Load blocks last - they depend on units and items
-        DoodleBlocks.load();
+        DTBlocks.load();
     }
 
 }

@@ -1,4 +1,4 @@
-package doodle.content;
+package dt.content;
 
 import arc.Core;
 import arc.assets.AssetDescriptor;
@@ -13,10 +13,10 @@ import mindustry.Vars;
  * before any content (weapons, units) that references them. All sounds are safely
  * loaded with headless server checks to prevent crashes in dedicated server environments.
  * --
- * Critical: This class must be loaded first in {@link doodle.DoodleTankMod#loadContent()}
+ * Critical: This class must be loaded first in {@link dt.DoodleTankMod#loadContent()}
  * so that sound references exist when weapons are initialized.
  */
-public class DoodleSounds {
+public class DTSounds {
     
     /** Large cannon firing sound - deep, powerful boom */
     public static Sound largeCannon = new Sound();

@@ -1,4 +1,4 @@
-package doodle.content;
+package dt.content;
 
 import arc.struct.Seq;
 import mindustry.content.Items;
@@ -16,10 +16,10 @@ import static mindustry.type.ItemStack.with;
  * null references in {@link UnitFactory#plans}. Each factory defines which units it can
  * produce along with their construction requirements and time.
  * --
- * Critical: This class must be loaded last in {@link doodle.DoodleTankMod#loadContent()}
+ * Critical: This class must be loaded last in {@link dt.DoodleTankMod#loadContent()}
  * to ensure all referenced units and items already exist.
  */
-public class DoodleBlocks {
+public class DTBlocks {
     
     /** 
      * Sketch Book factory - produces doodle-style tank units.
@@ -33,7 +33,7 @@ public class DoodleBlocks {
      * Initializes all factory blocks with their properties and unit production plans.
      * --
      * Uses double-brace initialization pattern for inline configuration.
-     * Unit plans reference units from {@link DoodleUnits} which must be preloaded.
+     * Unit plans reference units from {@link DTUnitTypes} which must be preloaded.
      */
     public static void load() {
 
@@ -43,13 +43,13 @@ public class DoodleBlocks {
             
             // Building requirements using static ItemStack.with() helper
             requirements(Category.units, with(
-                DoodleItems.paper, 4000,
+                DTItems.paper, 4000,
                 Items.silicon, 3000,
-                DoodleItems.eraser, 1200,
-                DoodleItems.pen, 1000,
-                DoodleItems.ruler, 1000,
+                DTItems.eraser, 1200,
+                DTItems.pen, 1000,
+                DTItems.ruler, 1000,
                 Items.plastanium, 600,
-                DoodleItems.pencil, 600,
+                DTItems.pencil, 600,
                 Items.surgeAlloy, 800
             ));
             
@@ -65,19 +65,19 @@ public class DoodleBlocks {
             // Each plan specifies: unit type, construction time (ticks), and item costs
             plans = Seq.with(
                     // CAX tank - 35 minutes construction time
-                    new UnitPlan(DoodleUnits.cax, 60f * 35f, with(
+                    new UnitPlan(DTUnitTypes.cax, 60f * 35f, with(
                         Items.silicon, 900,
                         Items.plastanium, 700,
-                        DoodleItems.pen, 600,
-                        DoodleItems.paper, 400,
+                        DTItems.pen, 600,
+                        DTItems.paper, 400,
                         Items.surgeAlloy, 500
                     )),
                     // 103 tank - 35 minutes construction time
-                    new UnitPlan(DoodleUnits.unit103, 60f * 35f, with(
+                    new UnitPlan(DTUnitTypes.unit103, 60f * 35f, with(
                         Items.silicon, 900,
                         Items.plastanium, 700,
-                        DoodleItems.pen, 600,
-                        DoodleItems.paper, 400,
+                        DTItems.pen, 600,
+                        DTItems.paper, 400,
                         Items.surgeAlloy, 500
                     ))
             );

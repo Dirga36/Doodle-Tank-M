@@ -1,4 +1,4 @@
-package doodle.type.weapons;
+package dt.type.weapons;
 
 import mindustry.entities.units.WeaponMount;
 import mindustry.gen.Unit;

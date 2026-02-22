@@ -1,8 +1,8 @@
-package doodle.content;
+package dt.content;
 
 import arc.graphics.Color;
 import arc.math.geom.Rect;
-import doodle.type.unit.DoodleUnitType;
+import dt.type.unit.DTUnitType;
 import mindustry.ai.types.GroundAI;
 import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
@@ -26,17 +26,17 @@ import mindustry.world.meta.BlockFlag;
  * Asset naming: Sprites use "dt-" prefix (e.g., "dt-cax.png") while code
  * uses short names ("cax") to avoid collisions with base game assets.
  */
-public class DoodleUnits {
+public class DTUnitTypes {
 
     /**
      * CAX medium tank - rotating turret with powerful cannon and overclock aura
      */
-    public static DoodleUnitType cax;
+    public static DTUnitType cax;
 
     /**
      * Unit 103 heavy tank - fixed gun with secondary weapons and anti-air capability
      */
-    public static DoodleUnitType unit103;
+    public static DTUnitType unit103;
 
     /**
      * Initializes all tank units with their configurations.
@@ -48,7 +48,7 @@ public class DoodleUnits {
 
         // === CAX MEDIUM TANK ===
         // Medium tank with rotating turret, single powerful cannon, and team buff ability
-        cax = new DoodleUnitType("cax") {{
+        cax = new DTUnitType("cax") {{
 
             alwaysUnlocked = true;
 
@@ -87,7 +87,7 @@ public class DoodleUnits {
             // === MAIN WEAPON - Medium Cannon ===
             weapons.add(new Weapon("dt-cax-weapon") {{
 
-                shootSound = DoodleSounds.mediumCannon;
+                shootSound = DTSounds.mediumCannon;
                 layerOffset = 0.1f;               // Draw slightly above unit
                 reload = 100f;                    // Reload time in ticks (60 ticks = 1 second)
                 shootY = 60f;                     // Bullet spawn distance from weapon center
@@ -116,13 +116,13 @@ public class DoodleUnits {
 
                 // Bullet configuration
                 bullet = new RailBulletType() {{
-                    pierceEffect = Fx.railHit;
-                    pointEffect = Fx.railTrail;
-                    shootEffect = Fx.instShoot;
-                    hitEffect = Fx.instHit;
-                    smokeEffect = Fx.smokeCloud;
+                    shootEffect = Fx.railShoot;
                     length = 500;
                     pointEffectSpace = 60f;
+                    pierceEffect = Fx.railHit;
+                    pointEffect = Fx.railTrail;
+                    hitEffect = Fx.hitFuse;
+                    smokeEffect = Fx.shootBig2;
                     damage = 1250;
                     pierceDamageFactor = 0.5f;
                 }};
@@ -133,7 +133,7 @@ public class DoodleUnits {
 
         // === UNIT 103 HEAVY TANK ===
         // Heavy tank with fixed main gun, rapid-fire secondary weapons, and anti-air capability
-        unit103 = new DoodleUnitType("103") {{
+        unit103 = new DTUnitType("103") {{
 
             alwaysUnlocked = true;
 
@@ -166,7 +166,7 @@ public class DoodleUnits {
             // === PRIMARY WEAPON - Large Fixed Cannon ===
             weapons.add(new Weapon("dt-103-weapon") {{
 
-                shootSound = DoodleSounds.largeCannon;
+                shootSound = DTSounds.largeCannon;
                 layerOffset = 0.1f;
                 reload = 75f;                     // Faster reload than CAX
                 shootY = 33f;
@@ -196,7 +196,7 @@ public class DoodleUnits {
                     trailWidth = 4f;
                     trailLength = 9;
                     hitEffect = despawnEffect = Fx.titanExplosion;
-                    despawnSound = DoodleSounds.dullExplosion;
+                    despawnSound = DTSounds.dullExplosion;
                     ejectEffect = Fx.casing4;
 
                     shootEffect = new ExplosionEffect() {{
@@ -243,7 +243,7 @@ public class DoodleUnits {
             // Fixed forward-facing rapid fire weapon for suppression
             weapons.add(new Weapon("dt-103-weapon-1") {{
 
-                shootSound = DoodleSounds.pew;
+                shootSound = DTSounds.pew;
                 layerOffset = 0.1f;
                 reload = 3.5f;                    // Very fast reload
                 inaccuracy = 1;                   // Slight spread
@@ -277,7 +277,7 @@ public class DoodleUnits {
             // Rotating rear turret for shooting down air units
             weapons.add(new Weapon("dt-103-weapon-2") {{
 
-                shootSound = DoodleSounds.shootSnap;
+                shootSound = DTSounds.shootSnap;
                 layerOffset = 0.1f;
                 reload = 3f;                      // Fast fire rate
                 shootY = 15f;

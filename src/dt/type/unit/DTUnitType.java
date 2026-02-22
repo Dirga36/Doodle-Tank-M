@@ -1,4 +1,4 @@
-package doodle.type.unit;
+package dt.type.unit;
 
 import mindustry.content.Items;
 import mindustry.graphics.Pal;
@@ -20,14 +20,14 @@ import mindustry.world.meta.Env;
  * All custom tank units should extend this class rather than the base UnitType
  * to inherit these shared properties automatically.
  */
-public class DoodleUnitType extends UnitType {
+public class DTUnitType extends UnitType {
 
     /**
      * Creates a new doodle tank unit type with default tank configuration.
      * 
      * @param name the internal name of the unit (e.g., "cax", "103")
      */
-    public DoodleUnitType(String name) {
+    public DTUnitType(String name) {
         super(name);
 
         // Visual style

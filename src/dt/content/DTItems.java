@@ -1,4 +1,4 @@
-package doodle.content;
+package dt.content;
 
 import arc.graphics.Color;
 import mindustry.type.Item;
@@ -13,7 +13,7 @@ import mindustry.type.Item;
  * Naming convention: Code uses short names (e.g., "paper") while assets
  * use the "dt-" prefix (e.g., "dt-paper.png") to avoid collisions.
  */
-public class DoodleItems {
+public class DTItems {
     
     public static Item
     paper,

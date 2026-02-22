@@ -1,11 +1,11 @@
-package doodle.type.weapons;
+package dt.type.weapons;
 
 import arc.audio.Sound;
 import arc.math.Angles;
 import arc.math.Mathf;
 import arc.util.Time;
 import arc.util.Tmp;
-import doodle.content.DoodleSounds;
+import dt.content.DTSounds;
 import mindustry.ai.types.MissileAI;
 import mindustry.content.Bullets;
 import mindustry.entities.Effect;
@@ -35,11 +35,11 @@ public class DevastatingWeapon extends Weapon {
     /**
      * Sound for normal shots. If not set, uses the weapon's shootSound.
      */
-    public Sound normalShootSound = DoodleSounds.pew;
+    public Sound normalShootSound = DTSounds.pew;
     /**
      * Sound for devastating strikes. If not set, uses the weapon's shootSound.
      */
-    public Sound devastatingShootSound = DoodleSounds.pew;
+    public Sound devastatingShootSound = DTSounds.pew;
     /**
      * Recoil multiplier for normal shots. Default is 1.0 (uses weapon's recoil).
      */
@@ -122,8 +122,8 @@ public class DevastatingWeapon extends Weapon {
 
         if (!continuous) {
             //Use appropriate sound for this bullet type
-            Sound soundToUse = isDevastating && devastatingShootSound != DoodleSounds.pew ? devastatingShootSound :
-                              !isDevastating && normalShootSound != DoodleSounds.pew ? normalShootSound :
+            Sound soundToUse = isDevastating && devastatingShootSound != DTSounds.pew ? devastatingShootSound :
+                              !isDevastating && normalShootSound != DTSounds.pew ? normalShootSound :
                               shootSound;
             soundToUse.at(bulletX, bulletY, Mathf.random(soundPitchMin, soundPitchMax));
         }
