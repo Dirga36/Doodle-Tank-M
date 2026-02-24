@@ -25,7 +25,7 @@ public class DTBlocks {
      * Sketch Book factory - produces doodle-style tank units.
      * --
      * A large 9x9 unit factory that consumes oil and power to construct tanks.
-     * Can produce both the "cax" and tank units.
+     * Can produce the "unit4007" and such DT units.
      */
     public static Block SketchBook;
 
@@ -64,8 +64,16 @@ public class DTBlocks {
             // Unit production plans - defines which units can be built
             // Each plan specifies: unit type, construction time (ticks), and item costs
             plans = Seq.with(
-                    // CAX tank - 3.5 minutes construction time
-                    new UnitPlan(DTUnitTypes.cax, 60f * 35f, with(
+                    // unit4007 tank - 3.5 minutes construction time
+                    new UnitPlan(DTUnitTypes.unit4007, 60f * 35f, with(
+                        Items.silicon, 900,
+                        Items.plastanium, 700,
+                        DTItems.pen, 600,
+                        DTItems.paper, 400,
+                        Items.surgeAlloy, 500
+                    )),
+                    // unit214 tank - 3.5 minutes construction time
+                    new UnitPlan(DTUnitTypes.unit214, 60f * 35f, with(
                         Items.silicon, 900,
                         Items.plastanium, 700,
                         DTItems.pen, 600,
