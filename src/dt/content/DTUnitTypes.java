@@ -70,7 +70,6 @@ public class DTUnitTypes {
             armor = 6f;                          // Damage reduction value
             crushDamage = 4f / 5f;               // Damage dealt when crushing units (5 per tick)
             rotateSpeed = 1f;                    // Rotation speed multiplier
-            targetAir = false;                   // Cannot attack air units
 
             // Team buff ability - applies overclock to nearby friendly units
             abilities.add(new StatusFieldAbility(
