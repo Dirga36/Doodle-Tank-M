@@ -54,8 +54,8 @@ public class DTBlocks {
             ));
             
             // Resource consumption
-            consumeLiquid(Liquids.oil, 3f);    // 3 units/second oil consumption
-            consumePower(25f);                 // 25 power units/second
+            consumeLiquid(Liquids.oil, 0.8f);    // 3 units/second oil consumption
+            consumePower(10f);                 // 25 power units/second
             
             liquidCapacity = 180f;             // Can store up to 180 units of liquid
 
@@ -65,20 +65,20 @@ public class DTBlocks {
             // Each plan specifies: unit type, construction time (ticks), and item costs
             plans = Seq.with(
                     // unit4007 tank - 3.5 minutes construction time
-                    new UnitPlan(DTUnitTypes.unit4007, 60f * 35f, with(
-                        Items.silicon, 900,
-                        Items.plastanium, 700,
-                        DTItems.pen, 600,
-                        DTItems.paper, 400,
-                        Items.surgeAlloy, 500
+                    new UnitPlan(DTUnitTypes.unit4007, 60f * 60f * 1.5f, with(
+                        Items.silicon, 500,
+                        Items.plastanium, 400,
+                        DTItems.pen, 300,
+                        DTItems.paper, 200,
+                        Items.surgeAlloy, 100
                     )),
                     // unit214 tank - 3.5 minutes construction time
-                    new UnitPlan(DTUnitTypes.unit214, 60f * 35f, with(
-                        Items.silicon, 900,
-                        Items.plastanium, 700,
-                        DTItems.pen, 600,
-                        DTItems.paper, 400,
-                        Items.surgeAlloy, 500
+                    new UnitPlan(DTUnitTypes.unit214, 60f * 60f * 1.5f, with(
+                        Items.silicon, 500,
+                        Items.plastanium, 400,
+                        DTItems.pen, 300,
+                        DTItems.paper, 200,
+                        Items.surgeAlloy, 100
                     ))
             );
             

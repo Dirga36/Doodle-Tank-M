@@ -65,7 +65,7 @@ public class DTUnitTypes {
             // === Physical attributes ===
             hitSize = 18f;                       // Collision radius in world units
             treadPullOffset = 1;                 // Tread animation offset
-            speed = 0.7f;                        // Movement speed
+            speed = 0.95f;                        // Movement speed
             health = 7000;                       // Hit points
             armor = 6f;                          // Damage reduction value
             crushDamage = 4f / 5f;               // Damage dealt when crushing units (5 per tick)
