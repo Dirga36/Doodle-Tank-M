@@ -2,12 +2,13 @@ package dt.content;
 
 import arc.graphics.Color;
 import arc.math.geom.Rect;
+import arc.struct.ObjectSet;
 import dt.type.unit.DTUnitType;
 import mindustry.ai.types.GroundAI;
 import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
 import mindustry.entities.abilities.StatusFieldAbility;
-import mindustry.entities.bullet.ArtilleryBulletType;
+import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.bullet.RailBulletType;
 import mindustry.entities.effect.ExplosionEffect;
 import mindustry.entities.part.RegionPart;
@@ -65,11 +66,11 @@ public class DTUnitTypes {
             // === Physical attributes ===
             hitSize = 18f;                       // Collision radius in world units
             treadPullOffset = 1;                 // Tread animation offset
-            speed = 0.95f;                        // Movement speed
+            speed = 0.95f;                       // Movement speed
             health = 7000;                       // Hit points
             armor = 6f;                          // Damage reduction value
             crushDamage = 4f / 5f;               // Damage dealt when crushing units (5 per tick)
-            rotateSpeed = 1f;                    // Rotation speed multiplier
+            rotateSpeed = 2f;                    // Rotation speed multiplier
 
             // Team buff ability - applies overclock to nearby friendly units
             abilities.add(new StatusFieldAbility(
@@ -151,13 +152,13 @@ public class DTUnitTypes {
             health = 10000;                      // Hit points
             armor = 10f;                         // Damage reduction value
             crushDamage = 10f / 5f;              // Damage dealt when crushing units (5 per tick)
-            rotateSpeed = 0.7f;                  // Rotation speed multiplier
-            //targetAir = false;                 // Cannot attack air units
+            rotateSpeed = 1.7f;                  // Rotation speed multiplier
+            immunities = ObjectSet.with(StatusEffects.blasted);
 
             // Tread trail effect - defines areas where tread marks appear
             treadRects = new Rect[]{new Rect(0, 0, 100, 110)};
 
-            // === MAIN WEAPON - Medium Cannon ===
+            // === MAIN WEAPON - Cannon ===
             weapons.add(new Weapon("dt-214-weapon") {{
 
                 shootSound = DTSounds.mediumCannon;
@@ -167,25 +168,25 @@ public class DTUnitTypes {
                 shake = 2.5f;                     // Screen shake intensity on fire
                 recoil = 2f;                      // Visual recoil distance
                 rotate = true;                    // Turret can rotate independently
-                rotateSpeed = 1f;                 // Turret rotation speed
+                rotateSpeed = 1.2f;               // Turret rotation speed
                 mirror = false;                   // Single weapon (not mirrored to both sides)
                 x = 0f;                           // Centered horizontally on unit
                 y = 3f;                           // Positioned forward on unit
                 shadow = 70f;                     // Shadow size
 
                 // Bullet configuration
-                bullet = new ArtilleryBulletType(10f, 50) {{
+                bullet = new BasicBulletType(10f, 150) {{
 
                     sprite = "missile-large";
-                    width = 15f;
-                    height = 18f;
+                    width = 7.5f;
+                    height = 15f;
                     lifetime = 17f;
-                    hitSize = 6f;
-                    knockback = 10f;              // Pushes targets back on hit
+                    hitSize = 8f;
+
+                    status = StatusEffects.blasted;
+                    statusDuration = 60f * 10;
 
                     smokeEffect = Fx.smokeCloud;
-                    pierceCap = 2;                // Can pierce 2 targets
-                    pierce = true;
                     pierceBuilding = false;       // Cannot penetrate buildings
                     hitColor = backColor = trailColor = Color.valueOf("feb380");
                     frontColor = Color.white;
@@ -210,9 +211,9 @@ public class DTUnitTypes {
                         sparkStroke = 3f;
                     }};
 
-                    // Large splash damage - wider radius than CAX
                     splashDamage = 50f;
                     splashDamageRadius = 160f;    // Massive splash radius
+                    knockback = 10f;              // Pushes targets back on hit
 
                     despawnEffect = new ExplosionEffect() {{
 

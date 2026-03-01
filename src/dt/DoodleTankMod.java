@@ -16,10 +16,6 @@ import mindustry.mod.Mod;
  *   Items - custom items used in factory requirements
  *   Units - tank units that reference sounds and items
  *   Blocks - factories that create units and consume items
- *
- * 
- * @author Dirge
- * @version 1.0
  */
 public class DoodleTankMod extends Mod {
  
