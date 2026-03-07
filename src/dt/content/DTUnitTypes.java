@@ -171,7 +171,7 @@ public class DTUnitTypes {
                 rotateSpeed = 1.2f;               // Turret rotation speed
                 mirror = false;                   // Single weapon (not mirrored to both sides)
                 x = 0f;                           // Centered horizontally on unit
-                y = 3f;                           // Positioned forward on unit
+                y = 2.5f;                         // Positioned forward on unit
                 shadow = 70f;                     // Shadow size
 
                 // Bullet configuration
