@@ -23,15 +23,15 @@ import mindustry.world.meta.BlockFlag;
  * blocks (which reference units in their production plans). Each unit extends
  * {@link DTUnitType} for shared tank characteristics.
  * --
- * Asset naming: Sprites use "dt-" prefix (e.g., "dt-unit4007.png") while code
- * uses short names ("unit4007") to avoid collisions with base game assets.
+ * Asset naming: Sprites use "dt-" prefix (e.g., "dt-unit4005.png") while code
+ * uses short names ("unit4005") to avoid collisions with base game assets.
  */
 public class DTUnitTypes {
 
     /**
-     * unit4007 long-ranged tank - with powerful cannon and overclock aura
+     * unit4005 long-ranged tank - with powerful cannon and overclock aura
      */
-    public static DTUnitType unit4007;
+    public static DTUnitType unit4005;
 
     /**
      * unit214 short-ranged tank - heavy and have a large ammounts of HP
@@ -46,9 +46,9 @@ public class DTUnitTypes {
      */
     public static void load() {
 
-        // === unit4007 ===
+        // === unit4005 ===
         // Long-ranged tank equiped with single powerful weapon, and team buff ability
-        unit4007 = new DTUnitType("4007") {{
+        unit4005 = new DTUnitType("4005") {{
 
             alwaysUnlocked = true;
 
@@ -84,19 +84,19 @@ public class DTUnitTypes {
             treadRects = new Rect[]{new Rect(0, 0, 90, 100)};
 
             // === MAIN WEAPON - Railgun ===
-            weapons.add(new Weapon("dt-4007-weapon") {{
+            weapons.add(new Weapon("dt-4005-weapon") {{
 
                 shootSound = DTSounds.largeCannon;
                 layerOffset = 0.1f;               // Draw slightly above unit
                 reload = 100f;                    // Reload time in ticks (60 ticks = 1 second)
                 shootY = 55f;                     // Bullet spawn distance from weapon center
                 shake = 5f;                       // Screen shake intensity on fire
-                recoil = 3f;                      // Visual recoil distance
+                recoil = 1f;                      // Visual recoil distance
                 rotate = true;                    // Turret can rotate independently
                 rotateSpeed = 1.2f;               // Turret rotation speed
                 mirror = false;                   // Single weapon (not mirrored to both sides)
                 x = 0f;                           // Centered horizontally on unit
-                y = 5f;                           // Positioned forward on unit
+                y = 5.5f;                           // Positioned forward on unit
                 shadow = 50f;                     // Shadow size
 
                 // Weapon visual parts - animated components
@@ -108,7 +108,7 @@ public class DTUnitTypes {
                             progress = PartProgress.recoil;   // Animates with weapon recoil
                             mirror = false;                   // Single barrel
                             under = true;                     // Draw below weapon
-                            moveY = -5f;                      // Moves back 5 units on fire
+                            moveY = -4f;                      // Moves back 4 units on fire
 
                         }}
                 );
@@ -150,7 +150,7 @@ public class DTUnitTypes {
             treadPullOffset = 1;                 // Tread animation offset
             speed = 0.7f;                        // Movement speed
             health = 10000;                      // Hit points
-            armor = 10f;                         // Damage reduction value
+            armor = 20f;                         // Damage reduction value
             crushDamage = 10f / 5f;              // Damage dealt when crushing units (5 per tick)
             rotateSpeed = 1.7f;                  // Rotation speed multiplier
             immunities = ObjectSet.with(StatusEffects.blasted);
